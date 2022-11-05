@@ -8,4 +8,4 @@ app.listen(2022,function(){
 
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html")
-})
+}) 
