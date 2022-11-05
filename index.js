@@ -3,7 +3,7 @@ const express = require("express");
 const app= express(); /** 새로운 객체를 만듬 */
 
 app.listen(2022,function(){
-    console.log("연결됨")
+    console.log("연결됨22")
 })
 
 app.get("/",function(req,res){
