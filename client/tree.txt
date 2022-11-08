@@ -1,0 +1,6 @@
+client  - public
+        - src   - components(모든 컴포넌트들 위치)
+                    - utils(기타 유틸들)
+                    - views(페이지들)
+                    - app.js(router base)
+        - index.js (root)        
