@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta property="og:title" content="converse">
+    <meta property="og:description" content="converse">
+    <meta property="og:image" content="../../resources/logo.png">  
+        
+    <title>converse toy project</title>
+    
+    <!-- css-->
+    <link rel="stylesheet" href="../../css/reset_adm.css">
+    <link rel="stylesheet" href="../../css/layout_adm.css"> 
+    <link rel="stylesheet" href="../../css/style_adm.css"> 
+
+    <!-- script -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    <script id="rendered-js" >
+        /* lnb */
+        (function ($) {
+
+            var lnbUI = {
+                click: function (target, speed) {
+                    var _self = this,
+                        $target = $(target);
+                    _self.speed = speed || 300;
+
+                    $target.each(function () {
+                        if (findChildren($(this))) {
+                            return;
+                        }
+                        $(this).addClass('noDepth');
+                    });
+
+                    function findChildren(obj) {
+                        return obj.find('> ul').length > 0;
+                    }
+
+                    $target.on('click', 'a', function (e) {
+                        e.stopPropagation();
+                        var $this = $(this),
+                            $depthTarget = $this.next(),
+                            $siblings = $this.parent().siblings();
+
+                        $this.parent('li').find('ul li').removeClass('on');
+                        $siblings.removeClass('on');
+                        $siblings.find('ul').slideUp(250);
+
+                        if ($depthTarget.css('display') == 'none') {
+                            _self.activeOn($this);
+                            $depthTarget.slideDown(_self.speed);
+                        } else {
+                            $depthTarget.slideUp(_self.speed);
+                            _self.activeOff($this);
+                        }
+
+                    });
+
+                },
+                activeOff: function ($target) {
+                    $target.parent().removeClass('on');
+                },
+                activeOn: function ($target) {
+                    $target.parent().addClass('on');
+                } };
+
+
+
+            // Call lnbUI
+            $(function () {
+                lnbUI.click('.lnb li', 300);
+            });
+
+
+        })(jQuery);
+        //# sourceURL=pen.js
+    </script>
+
+</head>
+<body>
+<div class="wrap">
+    
+    <!-- 헤더 시작 -->
+    <div class="header">   
+        <a href="./login.html" class="log">로그아웃</a>      
+        <div class="left_menu">
+            <a href="./index.html" class="logo_sm">
+                <h1>컨버스</h1>
+            </a>
+            <div class="lnb">
+                <ul>
+                    <li>
+                        <a href="#none">상품관리</a>
+                        <ul>
+                            <li>
+                                <a href="../../page/product/category.html">카테고리관리</a>
+                            </li>
+                            <li>
+                                <a href="../../page/product/product.html">상품관리</a>
+                            </li>
+                        </ul>
+                    </li>                   
+                    <li>
+                        <a href="../../page/member/member.html">회원관리</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 헤더 끝 -->
+    
+    
+    <!-- 컨테이너 시작 -->
+    <div class="container">
+       
+        <!-- 타이틀 영역 -->
+        <div class="top">              
+            <div class="title">
+                <h2>소분류 추가</h2> 
+                <div class="button_box">                    
+                    <button type="button" onclick="location.href='../../page/product/category.html'">등록</button>
+                </div>                               
+            </div>            
+        </div>
+        
+        <!-- 컨텐츠 영역 시작 -->
+        <div class="contents_area cate">
+            <form>
+                <h3 class="line">욕실 소분류 등록</h3>
+                <div class="box_cont">                
+                    <div class="row">
+                        <div class="col">분류코드</div>
+                        <div class="col">1010</div>
+                    </div>  
+                    <div class="row">
+                        <div class="col">카테고리명</div>
+                        <div class="col">
+                            <input type="text" name="" placeholder=""> 
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col">출력여부</div>
+                        <div class="col">  
+                            <div class="prt">
+                                <label>                      
+                                    <input type="radio" id="" name="print" checked="checked" > 출력
+                                </label>  
+                                <label>                    
+                                    <input type="radio" id="" name="print" > 미출력
+                                </label>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="row">
+                        <div class="col">출력순서</div>
+                        <div class="col">
+                            <p>*숫자만 입력하세요. 숫자가 낮을수록 먼저 출력 됩니다.</p>
+                            <input type="number" name="" placeholder="">
+                        </div>
+                    </div>                     
+                    <div class="row">
+                        <div class="col">카테고리 이미지</div>
+                        <div class="col">
+                            <div class="file_att">
+                                <p class="t_mint">이미지 사이즈 230*230(460*460)</p>                      
+                                <div class="btn_file">
+                                    <label>
+                                        파일선택
+                                        <input type="file" id="" accept="image/*">
+                                    </label>
+                                    asdfasdf.png
+                                    <!-- 선택된 파일이 없습니다. -->
+                                </div>
+                                <div class="file">
+                                    <label>
+                                        <input type="checkbox" id="">수정, 삭제, 새로등록시 체크
+                                    </label>                                
+                                </div> 
+                           </div>               
+                        </div>
+                    </div>    
+                
+                </div>    
+            </form>
+        </div>
+        <!-- 컨텐츠 영역 끝 -->
+
+    </div>
+    <!-- 컨테이너 끝 -->
+
+</div>
+</body>
+</html>

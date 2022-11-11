@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta property="og:title" content="converse">
+    <meta property="og:description" content="converse">
+    <meta property="og:image" content="../../resources/logo.png">  
+        
+    <title>converse toy project</title>
+    
+    <!-- css-->
+    <link rel="stylesheet" href="../../css/reset_adm.css">
+    <link rel="stylesheet" href="../../css/layout_adm.css"> 
+    <link rel="stylesheet" href="../../css/style_adm.css"> 
+
+    <!-- script -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    <script id="rendered-js" >
+        /* lnb */
+        (function ($) {
+
+            var lnbUI = {
+                click: function (target, speed) {
+                    var _self = this,
+                        $target = $(target);
+                    _self.speed = speed || 300;
+
+                    $target.each(function () {
+                        if (findChildren($(this))) {
+                            return;
+                        }
+                        $(this).addClass('noDepth');
+                    });
+
+                    function findChildren(obj) {
+                        return obj.find('> ul').length > 0;
+                    }
+
+                    $target.on('click', 'a', function (e) {
+                        e.stopPropagation();
+                        var $this = $(this),
+                            $depthTarget = $this.next(),
+                            $siblings = $this.parent().siblings();
+
+                        $this.parent('li').find('ul li').removeClass('on');
+                        $siblings.removeClass('on');
+                        $siblings.find('ul').slideUp(250);
+
+                        if ($depthTarget.css('display') == 'none') {
+                            _self.activeOn($this);
+                            $depthTarget.slideDown(_self.speed);
+                        } else {
+                            $depthTarget.slideUp(_self.speed);
+                            _self.activeOff($this);
+                        }
+
+                    });
+
+                },
+                activeOff: function ($target) {
+                    $target.parent().removeClass('on');
+                },
+                activeOn: function ($target) {
+                    $target.parent().addClass('on');
+                } };
+
+
+
+            // Call lnbUI
+            $(function () {
+                lnbUI.click('.lnb li', 300);
+            });
+
+
+        })(jQuery);
+        //# sourceURL=pen.js
+    </script>
+
+</head>
+<body>
+<div class="wrap">
+    
+    <!-- 헤더 시작 -->
+    <div class="header">   
+        <a href="./login.html" class="log">로그아웃</a>      
+        <div class="left_menu">
+            <a href="./index.html" class="logo_sm">
+                <h1>컨버스</h1>
+            </a>
+            <div class="lnb">
+                <ul>
+                    <li>
+                        <a href="#none">상품관리</a>
+                        <ul>
+                            <li>
+                                <a href="../../page/product/category.html">카테고리관리</a>
+                            </li>
+                            <li>
+                                <a href="../../page/product/product.html">상품관리</a>
+                            </li>
+                        </ul>
+                    </li>                   
+                    <li>
+                        <a href="../../page/member/member.html">회원관리</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 헤더 끝 -->
+
+    
+    <!-- 컨테이너 시작 -->
+    <div class="container">
+       
+        <!-- 타이틀 영역 -->
+        <div class="top"> 
+            <div class="title">
+                <h2>대분류/소분류 관리</h2> 
+                <div class="button_box">                    
+                    <button type="button" onclick="location.href='../../page/product/category_rgst.html'">대분류 등록<!-- 수정 --></button>
+                </div>                               
+            </div>            
+        </div>
+        
+        <!-- 컨텐츠 영역 시작 -->
+        <div class="contents_area cate">
+            
+            <!-- 가이드 문구 시작 -->
+            <div class="box_guide">
+                <h4>안내사항</h4>
+                <p>-대분류/소분류로 등록 가능합니다.</p>
+                <p>-카테고리 삭제는 하위 카테고리가 없거나 카테고리 내에 등록된 상품이 없는 경우에 삭제 가능합니다.</p>
+                <p>-삭제하려는 카테고리에 상품 등록을 했을 경우는 상품의 카테고리를 변경 후 삭제가 가능합니다.(이미 삭제한 상품이 해당 카테고리에 속해 있는 경우 삭제 불가 합니다.)</p>
+            </div>
+            <!-- 가이드 문구 끝-->
+            
+            <!-- 보드 시작 -->
+            <div class="board">
+                <table>
+                    <colgroup>
+                        <col style="width: 80px;">
+                        <col style="width: 100px;">
+                        <col style="width: auto;">
+                        <col style="width: 80px;">
+                        <col style="width: 100px;">
+                        <col style="width: 100px;">
+                        <col style="width: 120px;">
+                        <col style="width: 120px;">
+                        <col style="width: 100px;">
+                        <col style="width: 100px;">
+                        <col style="width: 100px;">
+                        <col style="width: 100px;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>카테고리명</th>
+                            <th>이미지</th>
+                            <th>분류</th>
+                            <th>노출여부</th>
+                            <th colspan="8">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20</td>
+                            <td class="cate_name">
+                                <div>
+                                    욕실
+                                </div>                                
+                            </td>
+                            <td class="thumb"><img src="../../img/img_prod_01.png"></td>
+                            <td>대분류</td>
+                            <td>노출</td>
+                            <td colspan="7"></td>
+                            <td><button type="button" class="btn-sm-ln" onclick="location.href='../../page/product/category_rgst.html'">수정</button></td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td class="cate_name">└ 치약</td>
+                            <td class="thumb"><img src="../../img/img_prod_01.png"></td>
+                            <td>소분류</td>
+                            <td>노출</td>
+                            <td colspan="7"></td>
+                            <td><button type="button" class="btn-sm-ln" onclick="location.href='../../page/product/category_rgst_sm.html'">수정</button></td>
+                        </tr>                   
+                    </tbody>
+                </table>
+
+                <!-- 페이지네이션 시작 -->
+                <div class="paging_box">
+                    <div class="paging">
+                        <a class="wide">처음</a>
+                        <a class="wide">이전</a>
+                        <a class="on">1</a>
+                        <a>2</a>
+                        <a>3</a>
+                        <a>4</a>
+                        <a>5</a>
+                        <a>6</a>
+                        <a>7</a>
+                        <a>8</a>
+                        <a>9</a>
+                        <a>10</a>
+                        <a class="wide">다음</a>
+                        <a class="wide">마지막</a>
+                    </div>
+                </div>
+                <!-- 페이지네이션 끝 -->
+
+            </div>
+            <!-- 보드 끝 -->            
+
+        </div>
+        <!-- 컨텐츠 영역 끝 -->
+
+    </div>
+    <!-- 컨테이너 끝 -->
+
+</div>
+</body>
+</html>

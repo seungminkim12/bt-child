@@ -1,0 +1,141 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 700;
+    src: local('Spoqa Han Sans Neo Bold'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 500;
+    src: local('Spoqa Han Sans Neo Medium'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+    src: local('Spoqa Han Sans Neo Regular'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 300;
+    src: local('Spoqa Han Sans Neo Light'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 100;
+    src: local('Spoqa Han Sans Neo Thin'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.woff') format('woff'),
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo/SpoqaHanSansNeo-Thin.ttf') format('truetype');
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input, select, textarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: inherit;
+    vertical-align: top;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    line-height: 1.5em;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    letter-spacing: -1px;
+    box-sizing: border-box;
+}
+body {
+    font-size: 14px;
+    max-width: 100%;    
+    word-break: break-all;    
+}
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* text */
+h2 {
+    display: inline-block;
+    height: 50px;
+    padding-left: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 52px;    
+}
+h3 {
+    font-size: 14px;
+    font-weight: bold;  
+    margin-bottom: 20px;  
+    text-align: left;
+}
+h3.line {
+    font-size: 14px;
+    font-weight: bold;  
+    margin-bottom: 20px;  
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000;
+}
+h3, h3.line {
+    margin-top: 50px;
+}
+h3:first-child, h3.line:first-child {
+    margin-top: 0px;
+}
+h4 {
+    font-size: 14px;
+    font-weight: bold;
+}
+h5 {font-size: 14px;}
+
+.t_mint {color: #3ec4ba !important}
+.t_blk {color:#000 !important}
+.t_wht {color: #fff !important}
+.t_red {color: #f00 !important}
+.t_gry {color:#707070 !important}
+.t_gry2 {color:#ddd !important}
+.tb_blk {background:#000 !important}
+
+
+
+/* 사이즈, 여백, 정렬 */
+.wd150 {
+    width: 150px !important;
+}
+.wd250 {
+    width: 250px !important;
+}
+.wd500 {
+    width: 500px !important;
+}
+.wd800 {
+    width: 800px !important;
+}
+
+.mg00 {
+    margin: 0 !important;
+}
+.mb10 {margin-bottom: 10px !important;}
+.mt20 {margin-top: 20px !important;}
+.mt50 {margin-top: 50px !important;}
+.mb20 {margin-bottom: 20px !important; }
+.mr00 {margin-right: 0 !important;}
+.mr05 {margin-right: 5px !important;}
+.ml05 {margin-left: 5px !important;}
+
+.aln_left {
+    text-align: left !important;
+}

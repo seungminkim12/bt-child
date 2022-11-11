@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta property="og:title" content="converse">
+    <meta property="og:description" content="converse">
+    <meta property="og:image" content="../../resources/logo.png">  
+        
+    <title>converse toy project</title>
+    
+    <!-- css-->
+    <link rel="stylesheet" href="../../css/reset_adm.css">
+    <link rel="stylesheet" href="../../css/layout_adm.css"> 
+    <link rel="stylesheet" href="../../css/style_adm.css"> 
+
+    <!-- script -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    <script id="rendered-js" >
+        /* lnb */
+        (function ($) {
+
+            var lnbUI = {
+                click: function (target, speed) {
+                    var _self = this,
+                        $target = $(target);
+                    _self.speed = speed || 300;
+
+                    $target.each(function () {
+                        if (findChildren($(this))) {
+                            return;
+                        }
+                        $(this).addClass('noDepth');
+                    });
+
+                    function findChildren(obj) {
+                        return obj.find('> ul').length > 0;
+                    }
+
+                    $target.on('click', 'a', function (e) {
+                        e.stopPropagation();
+                        var $this = $(this),
+                            $depthTarget = $this.next(),
+                            $siblings = $this.parent().siblings();
+
+                        $this.parent('li').find('ul li').removeClass('on');
+                        $siblings.removeClass('on');
+                        $siblings.find('ul').slideUp(250);
+
+                        if ($depthTarget.css('display') == 'none') {
+                            _self.activeOn($this);
+                            $depthTarget.slideDown(_self.speed);
+                        } else {
+                            $depthTarget.slideUp(_self.speed);
+                            _self.activeOff($this);
+                        }
+
+                    });
+
+                },
+                activeOff: function ($target) {
+                    $target.parent().removeClass('on');
+                },
+                activeOn: function ($target) {
+                    $target.parent().addClass('on');
+                } };
+
+
+
+            // Call lnbUI
+            $(function () {
+                lnbUI.click('.lnb li', 300);
+            });
+
+
+        })(jQuery);
+        //# sourceURL=pen.js
+    </script>
+
+</head>
+<body>
+<div class="wrap">
+    
+    <!-- 헤더 시작 -->
+    <div class="header">   
+        <a href="./login.html" class="log">로그아웃</a>      
+        <div class="left_menu">
+            <a href="./index.html" class="logo_sm">
+                <h1>컨버스</h1>
+            </a>
+            <div class="lnb">
+                <ul>
+                    <li>
+                        <a href="#none">상품관리</a>
+                        <ul>
+                            <li>
+                                <a href="../../page/product/category.html">카테고리관리</a>
+                            </li>
+                            <li>
+                                <a href="../../page/product/product.html">상품관리</a>
+                            </li>
+                        </ul>
+                    </li>                   
+                    <li>
+                        <a href="../../page/member/member.html">회원관리</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 헤더 끝 -->
+
+
+    <!-- 컨테이너 시작 -->
+    <div class="container">
+       
+        <!-- 타이틀 영역 -->
+        <div class="top"> 
+            <div class="title">
+                <h2>회원 관리</h2> 
+                <div class="button_box">                    
+                    <button type="button" class="gray" onclick="location.href='../../page/member/member_rgst.html'">회원등록</button>
+                </div>                               
+            </div>            
+        </div>
+        
+        <!-- 컨텐츠 영역 시작 -->
+        <div class="contents_area member">
+
+            <!-- 가이드 문구 시작 -->
+            <div class="box_guide">
+                <ul>
+                    <li>총회원 : 500명</li>
+                </ul>
+            </div>
+            <!-- 가이드 문구 끝-->
+
+            <form>    
+                            
+                <!-- 검색창 시작 -->
+                <div class="box_search">
+                    <ul>
+                        <li>분류</li>
+                        <li>
+                            <select>
+                                <option>전체</option>
+                                <option>회원</option>
+                            </select>
+                            <select>
+                                <option>아이디</option>
+                                <option>이름</option>
+                                <option>휴대폰 번호</option>                                
+                            </select>
+                            <input type="text" name="" placeholder="">
+                        </li>                       
+                    </ul>
+                    <button type="button" onclick="">검색</button>
+                </div>           
+                <!-- 검색창 끝-->
+                
+                <!-- 보드 시작 -->
+                <div class="board">                    
+                    <!-- 회원 리스트 시작 -->
+                    <table class="member_table">
+                        <colgroup>
+                            <col style="width: 40px;">
+                            <col style="width: 80px;">
+                            <col style="width: 150px;">
+                            <col style="width: auto;">
+                            <col style="width: 160px;">
+                            <col style="width: 120px;">
+                            <col style="width: 80px;">
+                            <col style="width: 80px;">
+                            <col style="width: 60px;">
+                            <col style="width: 140px;">
+                            <col style="width: 140px;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" class="mg00" id=""></th>
+                                <th>번호</th>
+                                <th>이름</th>
+                                <th>아이디</th>
+                                <th colspan="7">휴대폰 번호</th>                          
+                            </tr>
+                        </thead>                        
+                        <!-- 리스트 시작 -->
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="mg00" id=""></td>
+                                <td>10</td>
+                                <td><a href="../../page/member/member_detail.html">canvas</a></td>
+                                <td>g9g9g9@g9r.com</td>
+                                <td colspan="7">01021543265</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="mg00" id=""></td>
+                                <td>10</td>
+                                <td><a href="../../page/member/member_detail.html">canvas</a></td>
+                                <td>g9g9g9@g9r.com</td>
+                                <td colspan="7">01021543265</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="mg00" id=""></td>
+                                <td>10</td>
+                                <td><a href="../../page/member/member_detail.html">canvas</a></td>
+                                <td>g9g9g9@g9r.com</td>
+                                <td colspan="7">01021543265</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="mg00" id=""></td>
+                                <td>10</td>
+                                <td><a href="../../page/member/member_detail.html">canvas</a></td>
+                                <td>g9g9g9@g9r.com</td>
+                                <td colspan="7">01021543265</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="mg00" id=""></td>
+                                <td>10</td>
+                                <td><a href="../../page/member/member_detail.html">canvas</a></td>
+                                <td>g9g9g9@g9r.com</td>
+                                <td colspan="7">01021543265</td>
+                            </tr>
+                        </tbody>
+                        <!-- 리스트 끝 -->                         
+                                               
+                    </table>
+                    <!-- 리뷰 리스트 끝 -->
+
+                    <!-- 페이지네이션 시작 -->
+                    <div class="paging_box">
+                        <div class="paging">
+                            <a class="wide">처음</a>
+                            <a class="wide">이전</a>
+                            <a class="on">1</a>
+                            <a>2</a>
+                            <a>3</a>
+                            <a>4</a>
+                            <a>5</a>
+                            <a>6</a>
+                            <a>7</a>
+                            <a>8</a>
+                            <a>9</a>
+                            <a>10</a>
+                            <a class="wide">다음</a>
+                            <a class="wide">마지막</a>
+                        </div>
+                    </div>
+                    <!-- 페이지네이션 끝 -->                    
+
+                </div>
+                <!-- 보드 끝 -->   
+
+            </form>
+
+        </div>
+        <!-- 컨텐츠 영역 끝 -->
+
+    </div>
+    <!-- 컨테이너 끝 -->
+
+</div>
+</body>
+</html>

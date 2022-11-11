@@ -1,0 +1,130 @@
+/* default */
+.wrap {
+    width: 100%;
+    /* min-width: 1600px;*/
+}
+.header {
+    display: block;
+    position: relative;
+    z-index: 100;
+    border-right: 1px solid #f1f1f1;
+}
+.container {
+    width: 100%;
+    padding-left: 200px;
+    /* min-width: 1400px;*/
+    padding-top: 140px;
+}
+
+/* header 시작 */
+.header .log {
+    position: fixed;
+    top: 35px;
+    right: 50px;
+    z-index: 10;
+    font-size: 16px;
+    text-decoration: underline;
+    z-index: 100;
+}
+.header .left_menu {
+    position: fixed;
+    vertical-align: middle;
+    float:left;
+    width: 200px; 
+    height: 100vh;    
+    background: #fff;     
+}
+.header .left_menu .logo_sm {      
+    width: 100%;
+    height: 90px;
+    text-align: center;
+    background: url(https://www.pngplay.com/wp-content/uploads/13/Converse-Logo-PNG-Clipart-Background.png) no-repeat center; 
+    background-size: auto 19px;
+    border-bottom: 1px solid #f1f1f1; 
+    border-right: 1px solid #f1f1f1;
+}
+.header .left_menu .logo_sm h1 {
+    display: none;
+    /* color: #000;
+    padding: 35px 0; */
+}
+.lnb {
+    position: relative;
+    width: 200px;
+    height: 100vh;
+    border-right: 1px solid #f1f1f1;
+}
+.lnb > ul {}
+.lnb > ul > li { 
+    border-bottom: 1px solid #f1f1f1;
+}
+.lnb > ul > li > a {
+    display: block;
+    height: 50px;
+    padding: 15px 20px;     
+    background:#fff url(../img/icon_nav_arrow.png) no-repeat 95% 12px;
+    font-size: 16px;
+}
+
+.lnb > ul > li a:hover {
+    color: #fff; 
+    background-color: #000;
+    font-weight: bold;
+}
+.lnb > ul > li.on > a {
+    font-weight: bold;
+    color: #fff; 
+    background: #000 url(../img/icon_nav_arrow.png) no-repeat 95% 12px;
+}
+.lnb > ul > li ul {
+    display: none;
+    background: #f8f8f8;
+}
+.lnb > ul > li > ul > li > a {
+    display: block;
+    padding: 12px 20px; 
+    background: #f8f8f8 url(../img/icon_nav_arrow.png) no-repeat 95% 5px;
+    color: #707070; 
+    font-size: 16px;
+}
+.lnb > ul > li > ul > li > a:hover {    
+    background: #f8f8f8 url(../img/icon_nav_arrow.png) no-repeat 95% 5px;
+    color: #000;
+}
+.lnb > ul > li > ul > li a.on {
+    color: #000; 
+    background: #f8f8f8 url(../img/icon_nav_arrow.png) no-repeat 95% 5px;
+}
+.lnb > ul > li > ul > li:first-child {padding-top: 10px;}
+.lnb > ul > li > ul > li:last-child {padding-bottom: 10px;}
+.lnb > ul > li > ul li ul {
+    display: none;
+}
+.lnb > ul > li > ul li li {
+    padding: 0px 20px 0px 20px;
+}
+.lnb > ul > li > ul li li a {
+    display: block;    
+    color: #707070; 
+    font-size: 16px;
+    background: #eee !important; 
+    padding: 8px 20px 4px 20px;  
+}
+.lnb > ul > li > ul li li:first-child a {
+    border-bottom: 1px solid #fff;
+}
+.lnb > ul > li > ul > li li a:hover {
+    color: #000;
+}
+.lnb > ul > li > ul > li > li a.on {
+    color: #000;
+}
+.lnb > ul li.noDepth a {
+    background-image: none !important; 
+}
+/* header 끝 */
+
+
+
+
+/* 탭바 */

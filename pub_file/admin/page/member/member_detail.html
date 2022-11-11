@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta property="og:title" content="converse">
+    <meta property="og:description" content="converse">
+    <meta property="og:image" content="../../resources/logo.png">  
+        
+    <title>converse toy project</title>
+    
+    <!-- css-->
+    <link rel="stylesheet" href="../../css/reset_adm.css">
+    <link rel="stylesheet" href="../../css/layout_adm.css"> 
+    <link rel="stylesheet" href="../../css/style_adm.css"> 
+
+    <!-- script -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    <script id="rendered-js" >
+        /* lnb */
+        (function ($) {
+
+            var lnbUI = {
+                click: function (target, speed) {
+                    var _self = this,
+                        $target = $(target);
+                    _self.speed = speed || 300;
+
+                    $target.each(function () {
+                        if (findChildren($(this))) {
+                            return;
+                        }
+                        $(this).addClass('noDepth');
+                    });
+
+                    function findChildren(obj) {
+                        return obj.find('> ul').length > 0;
+                    }
+
+                    $target.on('click', 'a', function (e) {
+                        e.stopPropagation();
+                        var $this = $(this),
+                            $depthTarget = $this.next(),
+                            $siblings = $this.parent().siblings();
+
+                        $this.parent('li').find('ul li').removeClass('on');
+                        $siblings.removeClass('on');
+                        $siblings.find('ul').slideUp(250);
+
+                        if ($depthTarget.css('display') == 'none') {
+                            _self.activeOn($this);
+                            $depthTarget.slideDown(_self.speed);
+                        } else {
+                            $depthTarget.slideUp(_self.speed);
+                            _self.activeOff($this);
+                        }
+
+                    });
+
+                },
+                activeOff: function ($target) {
+                    $target.parent().removeClass('on');
+                },
+                activeOn: function ($target) {
+                    $target.parent().addClass('on');
+                } };
+
+
+
+            // Call lnbUI
+            $(function () {
+                lnbUI.click('.lnb li', 300);
+            });
+
+
+        })(jQuery);
+        //# sourceURL=pen.js
+    </script>
+
+</head>
+<body>
+<div class="wrap">
+    
+    <!-- 헤더 시작 -->
+    <div class="header">   
+        <a href="./login.html" class="log">로그아웃</a>      
+        <div class="left_menu">
+            <a href="./index.html" class="logo_sm">
+                <h1>컨버스</h1>
+            </a>
+            <div class="lnb">
+                <ul>
+                    <li>
+                        <a href="#none">상품관리</a>
+                        <ul>
+                            <li>
+                                <a href="../../page/product/category.html">카테고리관리</a>
+                            </li>
+                            <li>
+                                <a href="../../page/product/product.html">상품관리</a>
+                            </li>
+                        </ul>
+                    </li>                   
+                    <li>
+                        <a href="../../page/member/member.html">회원관리</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 헤더 끝 -->
+
+    
+    <!-- 컨테이너 시작 -->
+    <div class="container">
+       
+        <!-- 타이틀 영역 -->
+        <div class="top"> 
+            <div class="title">
+                <h2>회원 정보</h2> 
+                <div class="button_box">                    
+                    <button type="button" onclick="location.href='../../page/member/member.html'">수정</button>                    
+                </div>                               
+            </div>            
+        </div>
+        
+        <!-- 컨텐츠 영역 시작 -->
+        <div class="contents_area member">
+            
+            <form>                                
+                <div class="box_cont"> 
+
+                    <div class="row">
+                        <div class="col">아이디(이메일)</div>
+                        <div class="col">
+                            ggggg@gmail.com
+                        </div>
+                    </div>   
+                    <div class="row">
+                        <div class="col">이름</div>
+                        <div class="col">
+                            <p>10자 이내로 입력하세요</p>
+                            <input type="text" name="" placeholder="" value="지구랭"> 
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">비밀번호</div>
+                        <div class="col">
+                            <p>영문, 숫자, 특수문자 조합 8~20자(%$?^()제외)</p>
+                            <input type="password" name="" placeholder="" value="1234!qqqq"> 
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">비밀번호 확인</div>
+                        <div class="col">
+                            <p>위 비밀번호를 입력하세요</p>
+                            <input type="password" name="" placeholder="" value="1234!qqqq">
+                            <button type="button" class="btn blk-ln ht34" onclick="">비밀번호 변경</button> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">휴대폰 번호</div>
+                        <div class="col">
+                            <p>'-' 제외</p>
+                            <input class="aln_left" type="number" name="" placeholder="" value="01012549999">
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">
+                            <select>
+                                <option>회원</option>
+                                <option>관리자</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">성별</div>
+                        <div class="col">  
+                            <div class="prt">
+                                <label>                      
+                                    <input type="radio" id="" name="gender" checked="checked" > 남
+                                </label>  
+                                <label>                    
+                                    <input type="radio" id="" name="gender" > 여
+                                </label>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col">생년월일</div>
+                        <div class="col">
+                            <p>예)840705</p>
+                            <input class="aln_left" type="number" name="" placeholder="" value="830505">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">가입일</div>
+                        <div class="col">
+                            2021-12-11 18:59:54
+                        </div>
+                    </div>    
+                    <div class="row">
+                        <div class="col">상태</div>
+                        <div class="col">
+                            <select>
+                                <option>가입</option>
+                                <option>탈퇴</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">가입경로</div>
+                        <div class="col">
+                           네이버 
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">탈퇴일자</div>
+                        <div class="col">
+                            2021-12-19 18:59:54 
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">탈퇴사유</div>
+                        <div class="col">
+                            기타(직접입력)
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col">탈퇴내용</div>
+                        <div class="col">
+                            자주 사용하지 않아 탈퇴합니다.
+                        </div>
+                    </div> 
+                </div>
+
+            </form>
+
+        </div>
+        <!-- 컨텐츠 영역 끝 -->
+
+    </div>
+    <!-- 컨테이너 끝 -->
+
+</div>
+</body>
+</html>
