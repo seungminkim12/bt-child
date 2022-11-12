@@ -9,15 +9,25 @@ import DetailProductPage from "./views/DetailProductPage/DetailProductPage";
 import CartPage from "./views/CartPage/CartPage";
 import Home from './views/Home/Home'
 
+//adim page
+import AdminLogin from "./views/Admin/Login/Login";
+import Category from "./views/Admin/Category/Category";
+
+
 const App = () => {
   return (
     <Routes>
       <Route element={<Layout />}>
+        {/* user */}
         <Route index element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="cart" element={<CartPage />} />
+
+        {/* admin */}
+        <Route path="AdminLogin" element={<AdminLogin />} />
+        <Route path="Category" element={<Category />} />
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Route>
     </Routes>
