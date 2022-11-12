@@ -2,6 +2,10 @@ import React from 'react'
 /** 비디오 링크 */
 import videoSrc from "../../../img/index/section01/video.mp4"
 
+import "../../../css/reset.css"
+import "../../../css/layout.css"
+import "../../../css/response.css"
+
 const Home = () => {
     return (
       <main id="main">
@@ -10,7 +14,7 @@ const Home = () => {
             <ul className="contents clearFix">
                 <li>
                     <div className="contentBox">
-                        <video muted={true} autoPlay={true} loop={true} playsinline={true}>
+                        <video muted autoPlay loop playsInline>
                             <source src={videoSrc} type="video/mp4"/>
                         </video>
                     </div>

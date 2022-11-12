@@ -1,4 +1,7 @@
 import React from 'react'
+import "../../../css/reset.css"
+import "../../../css/layout.css"
+import "../../../css/response.css"
 
 const CartPage = () => {
     return (
@@ -11,7 +14,7 @@ const CartPage = () => {
             </div>
             <div className="cart_box">
                 <h2 className="hidden">장바구니 목록</h2>
-                <label for="chk_all">
+                <label htmlFor="chk_all">
                     <input type="checkbox" id="chk_all"/>
                     전체 선택
                 </label>
@@ -37,12 +40,12 @@ const CartPage = () => {
                         <div className="item_util">
                             <h3><span>109,000원</span> 98,100원</h3>
                             <div className="length_box">
-                                <input type="text" value="1" readonly name="item_length"/>
+                                <input type="text" value="1" readOnly name="item_length"/>
                                 <button className="length_minus">-</button>
                                 <button className="length_plus">+</button>
                             </div>
                             <button className="btn_option">옵션변경</button>
-                            <div className="option_box" style="display: none">
+                            <div className="option_box" style={{display: "none"}}>
                                 <h3>사이즈</h3>
                                 <select className="">
                                     <option disabled selected>- [필수]옵션을 선택해 주세요 -</option>
@@ -78,7 +81,7 @@ const CartPage = () => {
                         <div className="item_util">
                             <h3><span>109,000원</span> 98,100원</h3>
                             <div className="length_box">
-                                <input type="text" value="1" readonly name="item_length"/>
+                                <input type="text" value="1" readOnly name="item_length"/>
                                 <button className="length_minus">-</button>
                                 <button className="length_plus">+</button>
                             </div>

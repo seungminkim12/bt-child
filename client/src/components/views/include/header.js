@@ -5,21 +5,21 @@ const Header = () => {
     return (
         <> 
             <div id="headerSlide">
-                <div class="mask">
-                    <ul class="txtWarp">
-                        <li class="txtSlide">
+                <div className="mask">
+                    <ul className="txtWarp">
+                        <li className="txtSlide">
                             <span>
                                 <strong>NEW</strong><br/>
                                 척 70 시즈널 스웨이드 출시
                             </span>
                         </li>
-                        <li class="txtSlide">
+                        <li className="txtSlide">
                             <span>
                                 <strong>NEW</strong><br/>
                                 척테일러 올스타 리프트 클린 레더 하이 출시
                             </span>
                         </li>
-                        <li class="txtSlide">
+                        <li className="txtSlide">
                             <span>
                                 <strong>PROMOTION</strong><br/>
                                 컨버스와 함께하는 스페셜 오퍼 UPTO 40%
@@ -74,7 +74,7 @@ const Header = () => {
                                             <li>
                                                 <a href="#">
                                                     <div className="imgBox">
-                                                        <img src="/client/src/img/header/01.jpg" alt=""/>
+                                                        <img src="../../../img/header/01.jpg" alt=""/>
                                                     </div>
                                                     <h3>빅사이즈</h3>
                                                 </a>
@@ -82,7 +82,7 @@ const Header = () => {
                                             <li>
                                                 <a href="#">
                                                     <div className="imgBox">
-                                                        <img src="/client/src/img/header/02.jpg" alt=""/>
+                                                        <img src={require("../../../img/header/02.jpg")} alt=""/>
                                                     </div>
                                                     <h3>농구화 컬렉션</h3>
                                                 </a>
@@ -90,7 +90,7 @@ const Header = () => {
                                             <li>
                                                 <a href="#">
                                                     <div className="imgBox">
-                                                        <img src="/client/src/img/header/03.jpg" alt=""/>
+                                                        <img src={require("../../../img/header/03.jpg")} alt=""/>
                                                     </div>
                                                     <h3>척 70 라이벌</h3>
                                                 </a>
@@ -98,7 +98,7 @@ const Header = () => {
                                             <li>
                                                 <a href="#">
                                                     <div className="imgBox">
-                                                        <img src="/client/src/img/header/04.jpg" alt=""/>
+                                                        <img src={require("../../../img/header/04.jpg")} alt=""/>
                                                     </div>
                                                     <h3>젝퍼셀 핵트 패션</h3>
                                                 </a>
@@ -129,7 +129,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/05.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/05.jpg")} alt=""/>
                                                         </div>
                                                         <h3>컨버스 셰임스</h3>
                                                     </a>
@@ -137,7 +137,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/06.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/06.jpg")} alt=""/>
                                                         </div>
                                                         <h3>척 70 크루 삭스</h3>
                                                     </a>
@@ -145,7 +145,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/07.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/07.jpg")} alt=""/>
                                                         </div>
                                                         <h3>유틸리티 후디</h3>
                                                     </a>
@@ -153,7 +153,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/08.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/08.jpg")} alt=""/>
                                                         </div>
                                                         <h3>스타 쉐브론 팬츠</h3>
                                                     </a>
@@ -183,7 +183,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/09.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/09.jpg")} alt=""/>
                                                         </div>
                                                         <h3>패싱 노트</h3>
                                                     </a>
@@ -191,7 +191,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/10.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/10.jpg")} alt=""/>
                                                         </div>
                                                         <h3>수퍼플레이 NU 인펀트</h3>
                                                     </a>
@@ -199,7 +199,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/11.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/11.jpg")} alt=""/>
                                                         </div>
                                                         <h3>척 70 키즈</h3>
                                                     </a>
@@ -207,7 +207,7 @@ const Header = () => {
                                                 <li>
                                                     <a href="#">
                                                         <div className="imgBox">
-                                                            <img src="/client/src/img/header/12.jpg" alt=""/>
+                                                            <img src={require("../../../img/header/12.jpg")} alt=""/>
                                                         </div>
                                                         <h3>아트 클래스</h3>
                                                     </a>
@@ -267,8 +267,8 @@ const Header = () => {
                             <div className="leftBox01 clearFix">
                                 <div className="videoCon">
                                     <a href="">
-                                        <video muted autoplay loop playsinline>
-                                            <source src="/client/src/img/header/searchBox_video.mp4" type="video/mp4" />
+                                        <video muted autoPlay loop playsInline>
+                                            <source src={require("../../../img/header/searchBox_video.mp4")} type="video/mp4" />
                                         </video>
                                         <div className="hoverBox">
                                             <p>더 알아보기</p>
@@ -281,7 +281,7 @@ const Header = () => {
                                         <dd><a href=""><i className="xi-arrow-right"></i>구매하기</a></dd>
                                     </dl>
                                     <div className="imgBox">
-                                        <img src="/client/src/img/header/searchBox_img01.jpg" alt=""/>
+                                        <img src={require("../../../img/header/searchBox_img01.jpg")} alt=""/>
                                     </div>
                                 </div>
                             </div>
@@ -292,12 +292,12 @@ const Header = () => {
                                         <dd><a href=""><i className="xi-arrow-right"></i>FAQ에서 궁금한 내용을 찾아보세요.</a></dd>
                                     </dl>
                                     <div className="imgBox">
-                                        <img src="/client/src/img/header/searchBox_gif.gif" alt=""/>
+                                        <img src={require("../../../img/header/searchBox_gif.gif")} alt=""/>
                                     </div>
                                 </div>
                                 <div className="imgCon">
                                     <a href="">
-                                        <img src="/client/src/img/header/searchBox_img02.jpg" alt=""/>
+                                        <img src={require("../../../img/header/searchBox_img02.jpg")} alt=""/>
                                         <div className="hoverBox">
                                             <p>더 알아보기</p>
                                         </div>
@@ -311,13 +311,13 @@ const Header = () => {
                                 <label className="contentsBox">
                                     <input type="search" placeholder="검색어를 입력해주세요" />
                                     <a href="#" title="검색버튼" className="searchBtn">
-                                        <i class="xi-search"></i>
+                                        <i className="xi-search"></i>
                                     </a>
                                 </label>
                             </form>
-                            <div class="bestSearch">
+                            <div className="bestSearch">
                                 <h3>인기 검색어</h3>
-                                <ul class="bestSearchList">
+                                <ul className="bestSearchList">
                                     <li><a href="">척테일러</a></li>
                                     <li><a href="">잭퍼셀</a></li>
                                     <li><a href="">척 70</a></li>

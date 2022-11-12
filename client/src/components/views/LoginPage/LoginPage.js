@@ -1,5 +1,7 @@
 import React from 'react'
-
+import "../../../css/reset.css"
+import "../../../css/layout.css"
+import "../../../css/response.css"
 const Login = () => {
     return (
       <form action="" id="login_form" method="post">
