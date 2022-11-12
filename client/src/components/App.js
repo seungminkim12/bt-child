@@ -9,6 +9,9 @@ import DetailProductPage from "./views/DetailProductPage/DetailProductPage";
 import CartPage from "./views/CartPage/CartPage";
 import Home from './views/Home/Home'
 
+import Header from "./views/include/header"
+import Footer from "./views/include/footer"
+
 //adim page
 import AdminLogin from "./views/Admin/Login/Login";
 import Category from "./views/Admin/Category/Category";
@@ -42,33 +45,6 @@ const Layout = () => {
 
   return (
     <>
-      <h1>React Router</h1>
-
-      <nav
-        style={{
-          borderBottom: 'solid 1px',
-          paddingBottom: '1rem',
-        }}
-      >
-        <NavLink to="/home" style={style}>
-          Home
-        </NavLink>
-        <NavLink to="/login" style={style}>
-          Login
-        </NavLink>
-        <NavLink to="/register" style={style}>
-          Register
-
-        </NavLink>
-        <NavLink to="/cart" style={style}>
-          Cart
-        </NavLink>
-      </nav>
-
-      {/* <main style={{ padding: '1rem 0' }}>
-        <Outlet />
-      </main> */}
-
       <Header />
       <Outlet />
       <Footer/>

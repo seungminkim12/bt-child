@@ -29,7 +29,7 @@ const Header = () => {
                 </div>
             </div>
             <header id="header">
-                <div class="inner">
+                <div className="inner">
                     <div id="logo">
                         <Link to={"/"}>
                             <svg viewBox="0 0 805.4 94">
@@ -42,22 +42,22 @@ const Header = () => {
                             </svg>
                         </Link>
                     </div>
-                    <button class="gnbBtn">
+                    <button className="gnbBtn">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
                     <nav id="gnb">
-                        <h2 class="hidden">global navigation</h2>
-                        <ul class="gnbList">
+                        <h2 className="hidden">global navigation</h2>
+                        <ul className="gnbList">
                             <li>
-                                <a href="#" class="depth01">신발</a>
-                                <div class="depth02">
-                                    <button class="btnClose">
+                                <a href="#" className="depth01">신발</a>
+                                <div className="depth02">
+                                    <button className="btnClose">
                                         <span></span>
                                         <span></span>
                                     </button>
-                                    <ul class="linkList">
+                                    <ul className="linkList">
                                         <li><a href="#">전체보기</a></li>
                                         <li><a href="#">베스트셀러</a></li>
                                         <li><a href="#">척테일러 올스타</a></li>
@@ -68,12 +68,12 @@ const Header = () => {
                                         <li><a href="#">회원전용</a></li>
                                         <li><a href="#">SALE</a></li>
                                     </ul>
-                                    <div class="item">
+                                    <div className="item">
                                         <h3>추천 상품</h3>
-                                        <ul class="itemList clearFix">
+                                        <ul className="itemList clearFix">
                                             <li>
                                                 <a href="#">
-                                                    <div class="imgBox">
+                                                    <div className="imgBox">
                                                         <img src="/client/src/img/header/01.jpg" alt=""/>
                                                     </div>
                                                     <h3>빅사이즈</h3>
@@ -81,7 +81,7 @@ const Header = () => {
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <div class="imgBox">
+                                                    <div className="imgBox">
                                                         <img src="/client/src/img/header/02.jpg" alt=""/>
                                                     </div>
                                                     <h3>농구화 컬렉션</h3>
@@ -89,7 +89,7 @@ const Header = () => {
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <div class="imgBox">
+                                                    <div className="imgBox">
                                                         <img src="/client/src/img/header/03.jpg" alt=""/>
                                                     </div>
                                                     <h3>척 70 라이벌</h3>
@@ -97,7 +97,7 @@ const Header = () => {
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <div class="imgBox">
+                                                    <div className="imgBox">
                                                         <img src="/client/src/img/header/04.jpg" alt=""/>
                                                     </div>
                                                     <h3>젝퍼셀 핵트 패션</h3>
@@ -108,14 +108,14 @@ const Header = () => {
                                 </div>
                             </li>
                             <li>
-                                <a href="#" class="depth01">의류</a>
-                                <div class="depth02">
-                                    <div class="inner">
-                                        <button class="btnClose">
+                                <a href="#" className="depth01">의류</a>
+                                <div className="depth02">
+                                    <div className="inner">
+                                        <button className="btnClose">
                                             <span></span>
                                             <span></span>
                                         </button>
-                                        <ul class="linkList">
+                                        <ul className="linkList">
                                             <li><a href="#">전체보기</a></li>
                                             <li><a href="#">아우터</a></li>
                                             <li><a href="#">상의</a></li>
@@ -123,12 +123,12 @@ const Header = () => {
                                             <li><a href="#">용품</a></li>
                                             <li><a href="#">SALE</a></li>
                                         </ul>
-                                        <div class="item">
+                                        <div className="item">
                                             <h3>추천 상품</h3>
-                                            <ul class="itemList clearFix">
+                                            <ul className="itemList clearFix">
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/05.jpg" alt=""/>
                                                         </div>
                                                         <h3>컨버스 셰임스</h3>
@@ -136,7 +136,7 @@ const Header = () => {
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/06.jpg" alt=""/>
                                                         </div>
                                                         <h3>척 70 크루 삭스</h3>
@@ -144,7 +144,7 @@ const Header = () => {
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/07.jpg" alt=""/>
                                                         </div>
                                                         <h3>유틸리티 후디</h3>
@@ -152,7 +152,7 @@ const Header = () => {
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/08.jpg" alt=""/>
                                                         </div>
                                                         <h3>스타 쉐브론 팬츠</h3>
@@ -164,25 +164,25 @@ const Header = () => {
                                 </div>
                             </li>
                             <li>
-                                <a href="#" class="depth01">아동</a>
-                                <div class="depth02">
-                                    <div class="inner">
-                                        <button class="btnClose">
+                                <a href="#" className="depth01">아동</a>
+                                <div className="depth02">
+                                    <div className="inner">
+                                        <button className="btnClose">
                                             <span></span>
                                             <span></span>
                                         </button>
-                                        <ul class="linkList">
+                                        <ul className="linkList">
                                             <li><a href="#">전체보기</a></li>
                                             <li><a href="#">유아 (165mm이하)</a></li>
                                             <li><a href="#">어린이 (215mm이하)</a></li>
                                             <li><a href="#">SALE</a></li>
                                         </ul>
-                                        <div class="item">
+                                        <div className="item">
                                             <h3>추천 상품</h3>
-                                            <ul class="itemList clearFix">
+                                            <ul className="itemList clearFix">
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/09.jpg" alt=""/>
                                                         </div>
                                                         <h3>패싱 노트</h3>
@@ -190,7 +190,7 @@ const Header = () => {
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/10.jpg" alt=""/>
                                                         </div>
                                                         <h3>수퍼플레이 NU 인펀트</h3>
@@ -198,7 +198,7 @@ const Header = () => {
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/11.jpg" alt=""/>
                                                         </div>
                                                         <h3>척 70 키즈</h3>
@@ -206,7 +206,7 @@ const Header = () => {
                                                 </li>
                                                 <li>
                                                     <a href="#">
-                                                        <div class="imgBox">
+                                                        <div className="imgBox">
                                                             <img src="/client/src/img/header/12.jpg" alt=""/>
                                                         </div>
                                                         <h3>아트 클래스</h3>
@@ -217,17 +217,17 @@ const Header = () => {
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#" class="depth01">런칭캘린더</a></li>
-                            <li><a href="#" class="depth01">회원전용</a></li>
+                            <li><a href="#" className="depth01">런칭캘린더</a></li>
+                            <li><a href="#" className="depth01">회원전용</a></li>
                         </ul>
-                        <ul class="resizeMenu">
+                        <ul className="resizeMenu">
                             <li><a href="#">마이페이지</a></li>
                             <li><a href="#">주문/배송 조회</a></li>
                             <li><a href="#">고객지원센터</a></li>
                             <li><a href="#">로그인</a></li>
                             <li><a href="#">FAMILY SITES</a></li>
                         </ul>
-                        <dl class="resizeGnbFooter">
+                        <dl className="resizeGnbFooter">
                             <dt>(유)컨버스 코리아 포트폴리오</dt>
                             <dd>퍼블리싱 100%</dd>
                             <dd>html5</dd>
@@ -236,81 +236,81 @@ const Header = () => {
                             <dd>상업용이 아닌 포트폴리오 용으로<br/> 제작된 페이지 임을 알립니다.</dd>
                         </dl>
                     </nav>
-                    <div class="util">
-                        <ul class="utilMenu">
+                    <div className="util">
+                        <ul className="utilMenu">
                             <li>
-                                <Link to={'/login'} class="btn_mypage"><i class="xi-user-o"></i></Link>
+                                <Link to={'/login'} className="btn_mypage"><i className="xi-user-o"></i></Link>
                                 </li>
                             <li>
-                                <Link to={'/cart'} class="btn_cart"><i class="xi-cart-o"></i></Link>
+                                <Link to={'/cart'} className="btn_cart"><i className="xi-cart-o"></i></Link>
                             </li>
                             <li>
-                                <a><i class="xi-heart-o"></i></a>
+                                <a><i className="xi-heart-o"></i></a>
                                 </li>
                             <li>
-                                <a><i class="xi-help-o"></i></a>
+                                <a><i className="xi-help-o"></i></a>
                                 </li>
                             <li>
-                                <a>
-                                    <i class="xi-search"></i>
-                                    <i class="xi-close"></i>
+                                <a href="#">
+                                    <i className="xi-search"></i>
+                                    <i className="xi-close"></i>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </header>
-            <div class="searchBox">
-                <div class="container">
-                    <div class="inner clearFix">
-                        <div class="left">
-                            <div class="leftBox01 clearFix">
-                                <div class="videoCon">
+            <div className="searchBox">
+                <div className="container">
+                    <div className="inner clearFix">
+                        <div className="left">
+                            <div className="leftBox01 clearFix">
+                                <div className="videoCon">
                                     <a href="">
                                         <video muted autoplay loop playsinline>
                                             <source src="/client/src/img/header/searchBox_video.mp4" type="video/mp4" />
                                         </video>
-                                        <div class="hoverBox">
+                                        <div className="hoverBox">
                                             <p>더 알아보기</p>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="bestSellerCon">
+                                <div className="bestSellerCon">
                                     <dl>
                                         <dt>베스트셀러</dt>
-                                        <dd><a href=""><i class="xi-arrow-right"></i>구매하기</a></dd>
+                                        <dd><a href=""><i className="xi-arrow-right"></i>구매하기</a></dd>
                                     </dl>
-                                    <div class="imgBox">
+                                    <div className="imgBox">
                                         <img src="/client/src/img/header/searchBox_img01.jpg" alt=""/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="leftBox02 clearFix">
-                                <div class="faqCon">
+                            <div className="leftBox02 clearFix">
+                                <div className="faqCon">
                                     <dl>
                                         <dt>무엇을 도와드릴까요?</dt>
-                                        <dd><a href=""><i class="xi-arrow-right"></i>FAQ에서 궁금한 내용을 찾아보세요.</a></dd>
+                                        <dd><a href=""><i className="xi-arrow-right"></i>FAQ에서 궁금한 내용을 찾아보세요.</a></dd>
                                     </dl>
-                                    <div class="imgBox">
+                                    <div className="imgBox">
                                         <img src="/client/src/img/header/searchBox_gif.gif" alt=""/>
                                     </div>
                                 </div>
-                                <div class="imgCon">
+                                <div className="imgCon">
                                     <a href="">
                                         <img src="/client/src/img/header/searchBox_img02.jpg" alt=""/>
-                                        <div class="hoverBox">
+                                        <div className="hoverBox">
                                             <p>더 알아보기</p>
                                         </div>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="right">
-                            <form action="#" class="searchCon">
+                        <div className="right">
+                            <form action="#" className="searchCon">
                                 <h3>검색</h3>
-                                <label class="contentsBox">
+                                <label className="contentsBox">
                                     <input type="search" placeholder="검색어를 입력해주세요" />
-                                    <a href="#" title="검색버튼" class="searchBtn">
+                                    <a href="#" title="검색버튼" className="searchBtn">
                                         <i class="xi-search"></i>
                                     </a>
                                 </label>
@@ -331,5 +331,6 @@ const Header = () => {
         </>
     )
 }
+
 
 export default Header;
