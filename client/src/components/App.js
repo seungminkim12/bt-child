@@ -9,8 +9,12 @@ import DetailProductPage from "./views/DetailProductPage/DetailProductPage";
 import CartPage from "./views/CartPage/CartPage";
 import Home from './views/Home/Home'
 
+import Header from "./views/include/header"
+import Footer from "./views/include/footer"
+
 const App = () => {
   return (
+    
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
@@ -47,15 +51,20 @@ const Layout = () => {
         </NavLink>
         <NavLink to="/register" style={style}>
           Register
+
         </NavLink>
         <NavLink to="/cart" style={style}>
           Cart
         </NavLink>
       </nav>
 
-      <main style={{ padding: '1rem 0' }}>
+      {/* <main style={{ padding: '1rem 0' }}>
         <Outlet />
-      </main>
+      </main> */}
+
+      <Header />
+      <Outlet />
+      <Footer/>
     </>
   );
 };
