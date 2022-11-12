@@ -16,6 +16,7 @@ import Category from "./views/Admin/Category/Category";
 
 const App = () => {
   return (
+    
     <Routes>
       <Route element={<Layout />}>
         {/* user */}
@@ -57,15 +58,20 @@ const Layout = () => {
         </NavLink>
         <NavLink to="/register" style={style}>
           Register
+
         </NavLink>
         <NavLink to="/cart" style={style}>
           Cart
         </NavLink>
       </nav>
 
-      <main style={{ padding: '1rem 0' }}>
+      {/* <main style={{ padding: '1rem 0' }}>
         <Outlet />
-      </main>
+      </main> */}
+
+      <Header />
+      <Outlet />
+      <Footer/>
     </>
   );
 };
