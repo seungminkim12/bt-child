@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
@@ -12,20 +13,20 @@ const Login = () => {
                 <input type="password" id="login_pw" name="login_pw" placeholder="패스워드"/>
             </fieldset>
             <ul className="search_list">
-                <li><a href="">아이디</a></li>
-                <li><a href="">비밀번호찾기</a></li>
+                <li><Link>아이디</Link></li>
+                <li><Link>비밀번호찾기</Link></li>
             </ul>
             <ul className="social_list">
-                <li><a href="" className="login">로그인</a></li>
-                <li><a href="" className="kakao_login"><img/>카카오 계정으로 1초 로그인</a></li>
+                <li><Link className="login">로그인</Link></li>
+                <li><Link className="kakao_login"><img/>카카오 계정으로 1초 로그인</Link></li>
             </ul>
             <ul className="util">
-                <li><a href="" className="btn_join"><span className="txt">회원가입</span> <span className="ps">신규 가입 쿠폰 1만원 지급</span> </a></li>
-                <li><a href="" className="unknown_info"><span className="txt">비회원 주문조회</span></a></li>
+                <li><Link className="btn_join"><span className="txt">회원가입</span> <span className="ps">신규 가입 쿠폰 1만원 지급</span> </Link></li>
+                <li><Link className="unknown_info"><span className="txt">비회원 주문조회</span></Link></li>
             </ul>
             <dl className="qna_box">
                 <dt>로그인 관련하여 궁금한 사항이 있으신가요?</dt>
-                <dd><a href="">[자주 묻는 질문 바로가기]</a></dd>
+                <dd><Link>[자주 묻는 질문 바로가기]</Link></dd>
             </dl>
             <dl className="user_check">
                 <dt>잠깐! 계속 로그인에 실패하고 계신가요?</dt>
@@ -36,7 +37,7 @@ const Login = () => {
                     탈퇴 신청을 해주세요.  
                 </dd>
                 <dd>
-                    <a href="">중복 계정 여부 확인하기</a>
+                    <Link>중복 계정 여부 확인하기</Link>
                 </dd>
             </dl>
         </div>

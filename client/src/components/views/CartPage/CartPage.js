@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
@@ -21,11 +22,11 @@ const CartPage = () => {
                 <ul className="cart_list">
                     <li className="sale">
                         <input type="checkbox" name="" id=""/>
-                        <a href="" className="img_box">
+                        <Link className="img_box">
                             <img/>
-                        </a>
+                        </Link>
                         <dl className="info_box">
-                            <dt><a href="">상품 이름</a></dt>
+                            <dt><Link>상품 이름</Link></dt>
                             <dd className="color_size"><span>색상</span> / <span>사이즈</span></dd>
                             <dd className="length">수량<span>1</span></dd>
                             <dd className="btns">
@@ -62,11 +63,11 @@ const CartPage = () => {
                     </li>
                     <li className="">
                         <input type="checkbox" name="" id=""/>
-                        <a href="" className="img_box">
+                        <Link className="img_box">
                             <img/>
-                        </a>
+                        </Link>
                         <dl className="info_box">
-                            <dt><a href="">상품 이름</a></dt>
+                            <dt><Link>상품 이름</Link></dt>
                             <dd className="color_size"><span>색상</span> / <span>사이즈</span></dd>
                             <dd className="length">수량<span>1</span></dd>
                             <dd className="btns">
@@ -103,7 +104,7 @@ const CartPage = () => {
                     <button className="btn_submit">전체상품 주문하기</button>
                 </dd>
                 <dd className="bg info_txt">
-                    <a href="">프로모션/쿠폰은 주문페이지에서 확인됩니다.</a>
+                    <Link>프로모션/쿠폰은 주문페이지에서 확인됩니다.</Link>
                 </dd>
                 <dd className="toggle_info">
                     <button>이용안내</button>
@@ -128,7 +129,7 @@ const CartPage = () => {
             <dt>장바구니에 담긴 상품이 없습니다.</dt>
             <dd className="txt">척 70, 무브, 척테일러, 원스타, 런스타 등 지금 컨버스의 다양한 상품을 찾아보세요.</dd>
             <dd>
-                <a href="">쇼핑 계속하기</a>
+                <Link>쇼핑 계속하기</Link>
             </dd>
         </dl>
     </section>

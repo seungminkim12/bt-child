@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
         return (
@@ -7,39 +8,39 @@ const Footer = () => {
                     <li>
                         <h3>FOLLOW US</h3>
                         <ul className="footerDepth">
-                            <li><a href="#"><i className="xi-facebook"></i></a></li>
-                            <li><a href="#"><i className="xi-instagram"></i></a></li>
+                            <li><Link><i className="xi-facebook"></i></Link></li>
+                            <li><Link><i className="xi-instagram"></i></Link></li>
                         </ul>
                     </li>
                     <li>
                         <h3>SUPPORT</h3>
                         <ul className="footerDepth">
-                            <li><a href="#">고객지원센터</a></li>
-                            <li><a href="#">1:1 문의</a></li>
-                            <li><a href="#">주문/배송 조회</a></li>
+                            <li><Link>고객지원센터</Link></li>
+                            <li><Link>1:1 문의</Link></li>
+                            <li><Link>주문/배송 조회</Link></li>
                         </ul>
                     </li>
                     <li>
                         <h3>INFORMATION</h3>
                         <ul className="footerDepth">
-                            <li><a href="#">컨버스에 대하여</a></li>
-                            <li><a href="#">회원가입</a></li>
-                            <li><a href="#">매장안내</a></li>
-                            <li><a href="#">공지사항</a></li>
+                            <li><Link>컨버스에 대하여</Link></li>
+                            <li><Link>회원가입</Link></li>
+                            <li><Link>매장안내</Link></li>
+                            <li><Link>공지사항</Link></li>
                         </ul>
                     </li>
                     <li>
                         <h3>POLICY</h3>
                         <ul className="footerDepth">
-                            <li><a href="#">이용약관</a></li>
-                            <li><a href="#">개인정보처리방침</a></li>
+                            <li><Link>이용약관</Link></li>
+                            <li><Link>개인정보처리방침</Link></li>
                         </ul>
                     </li>
                     <li>
                         <h3>FAMILY SITES</h3>
                         <ul className="footerDepth">
-                            <li><a href="#">NIKE</a></li>
-                            <li><a href="#">Jordan</a></li>
+                            <li><Link>NIKE</Link></li>
+                            <li><Link>Jordan</Link></li>
                         </ul>
                     </li>
                 </ul>
@@ -54,14 +55,14 @@ const Footer = () => {
                             </div>
                             <div className="middle">
                                 <span>통신판매업 신고번호: 제2016-서울강남-00478호</span>
-                                <span><a href="#">통신판매업자 신원정보 확인 </a></span>
+                                <span><Link>통신판매업자 신원정보 확인 </Link></span>
                             </div>
                             <span>주소: 서울시 강남구 테헤란로 152 강남파이낸스센터 32F</span>
                             <div className="bottom">
                                 <span>
                                     고객상담팀: 080-987-0182 (상담시간 월-금 : AM 09:00 - PM 05:30, 주말/공휴일 휴무)
                                 </span>
-                                <span><a href="#">conversekorea@converse.co.kr</a> (24시간 접수 가능)</span>
+                                <span><Link>conversekorea@converse.co.kr</Link> (24시간 접수 가능)</span>
                             </div>
                             <p className="copy">2020 Converse Korea LLC. All Rights Reserved.</p>
                         </address>
@@ -72,7 +73,7 @@ const Footer = () => {
                                 구매안전서비스 소비자피해보증보험 서비스를 이용하실 수 있습니다.<br/>
                                 보증대상: 미배송, 반품/환불거부, 쇼핑몰 부도
                             </dd>
-                            <dd><a href="#">보증보험 가입사실 확인하기</a></dd>
+                            <dd><Link>보증보험 가입사실 확인하기</Link></dd>
                         </dl>
                     </div>
                 </div>

@@ -1,7 +1,34 @@
-import React from "react"
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+    const searchBox_toggle = () => {
+        // alert("a")
+        document.body.classList.toggle("searchHidden")
+        // if(document.body.classList.find(el=>el === "searchHidden")){
+        //     alert("a")
+        // } else {
+        //     alert("b")
+        // }
+    }
+
+    const gnb_event = (e) => {
+        if(e.target.tagName === "A"){
+            /** depth02 를 가지고 있는 요소만 */
+            if(e.target.nextElementSibling != null){
+                document.querySelectorAll(".gnbList .depth02").forEach(el=>{
+                    el.classList.remove("active")
+                })
+                e.target.nextElementSibling.classList.toggle("active");
+            }
+        }
+    }
+
+    const depth_close = (e) => {
+        console.log(e.currentTarget.parentNode)
+        e.currentTarget.parentNode.classList.remove("active")
+    }
+
     return (
         <> 
             <div id="headerSlide">
@@ -49,114 +76,114 @@ const Header = () => {
                     </button>
                     <nav id="gnb">
                         <h2 className="hidden">global navigation</h2>
-                        <ul className="gnbList">
+                        <ul className="gnbList" onClick={gnb_event}>
                             <li>
-                                <a href="#" className="depth01">신발</a>
+                                <Link className="depth01">신발</Link>
                                 <div className="depth02">
-                                    <button className="btnClose">
+                                    <button className="btnClose" onClick={depth_close}>
                                         <span></span>
                                         <span></span>
                                     </button>
                                     <ul className="linkList">
-                                        <li><a href="#">전체보기</a></li>
-                                        <li><a href="#">베스트셀러</a></li>
-                                        <li><a href="#">척테일러 올스타</a></li>
-                                        <li><a href="#">척 70</a></li>
-                                        <li><a href="#">원스타</a></li>
-                                        <li><a href="#">잭퍼셀</a></li>
-                                        <li><a href="#">프로레더</a></li>
-                                        <li><a href="#">회원전용</a></li>
-                                        <li><a href="#">SALE</a></li>
+                                        <li><Link>전체보기</Link></li>
+                                        <li><Link>베스트셀러</Link></li>
+                                        <li><Link>척테일러 올스타</Link></li>
+                                        <li><Link>척 70</Link></li>
+                                        <li><Link>원스타</Link></li>
+                                        <li><Link>잭퍼셀</Link></li>
+                                        <li><Link>프로레더</Link></li>
+                                        <li><Link>회원전용</Link></li>
+                                        <li><Link>SALE</Link></li>
                                     </ul>
                                     <div className="item">
                                         <h3>추천 상품</h3>
                                         <ul className="itemList clearFix">
                                             <li>
-                                                <a href="#">
+                                                <Link>
                                                     <div className="imgBox">
-                                                        <img src="../../../img/header/01.jpg" alt=""/>
+                                                        <img src={require("../../../img/header/01.jpg")} alt=""/>
                                                     </div>
                                                     <h3>빅사이즈</h3>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <Link>
                                                     <div className="imgBox">
                                                         <img src={require("../../../img/header/02.jpg")} alt=""/>
                                                     </div>
                                                     <h3>농구화 컬렉션</h3>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <Link>
                                                     <div className="imgBox">
                                                         <img src={require("../../../img/header/03.jpg")} alt=""/>
                                                     </div>
                                                     <h3>척 70 라이벌</h3>
-                                                </a>
+                                                </Link>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <Link>
                                                     <div className="imgBox">
                                                         <img src={require("../../../img/header/04.jpg")} alt=""/>
                                                     </div>
                                                     <h3>젝퍼셀 핵트 패션</h3>
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
                             <li>
-                                <a href="#" className="depth01">의류</a>
+                                <Link className="depth01">의류</Link>
                                 <div className="depth02">
+                                    <button className="btnClose" onClick={depth_close}>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
                                     <div className="inner">
-                                        <button className="btnClose">
-                                            <span></span>
-                                            <span></span>
-                                        </button>
                                         <ul className="linkList">
-                                            <li><a href="#">전체보기</a></li>
-                                            <li><a href="#">아우터</a></li>
-                                            <li><a href="#">상의</a></li>
-                                            <li><a href="#">하의</a></li>
-                                            <li><a href="#">용품</a></li>
-                                            <li><a href="#">SALE</a></li>
+                                            <li><Link>전체보기</Link></li>
+                                            <li><Link>아우터</Link></li>
+                                            <li><Link>상의</Link></li>
+                                            <li><Link>하의</Link></li>
+                                            <li><Link>용품</Link></li>
+                                            <li><Link>SALE</Link></li>
                                         </ul>
                                         <div className="item">
                                             <h3>추천 상품</h3>
                                             <ul className="itemList clearFix">
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/05.jpg")} alt=""/>
                                                         </div>
                                                         <h3>컨버스 셰임스</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/06.jpg")} alt=""/>
                                                         </div>
                                                         <h3>척 70 크루 삭스</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/07.jpg")} alt=""/>
                                                         </div>
                                                         <h3>유틸리티 후디</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/08.jpg")} alt=""/>
                                                         </div>
                                                         <h3>스타 쉐브론 팬츠</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -164,68 +191,68 @@ const Header = () => {
                                 </div>
                             </li>
                             <li>
-                                <a href="#" className="depth01">아동</a>
+                                <Link className="depth01">아동</Link>
                                 <div className="depth02">
+                                    <button className="btnClose" onClick={depth_close}>
+                                        <span></span>
+                                        <span></span>
+                                    </button>
                                     <div className="inner">
-                                        <button className="btnClose">
-                                            <span></span>
-                                            <span></span>
-                                        </button>
                                         <ul className="linkList">
-                                            <li><a href="#">전체보기</a></li>
-                                            <li><a href="#">유아 (165mm이하)</a></li>
-                                            <li><a href="#">어린이 (215mm이하)</a></li>
-                                            <li><a href="#">SALE</a></li>
+                                            <li><Link>전체보기</Link></li>
+                                            <li><Link>유아 (165mm이하)</Link></li>
+                                            <li><Link>어린이 (215mm이하)</Link></li>
+                                            <li><Link>SALE</Link></li>
                                         </ul>
                                         <div className="item">
                                             <h3>추천 상품</h3>
                                             <ul className="itemList clearFix">
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/09.jpg")} alt=""/>
                                                         </div>
                                                         <h3>패싱 노트</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/10.jpg")} alt=""/>
                                                         </div>
                                                         <h3>수퍼플레이 NU 인펀트</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/11.jpg")} alt=""/>
                                                         </div>
                                                         <h3>척 70 키즈</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    <Link>
                                                         <div className="imgBox">
                                                             <img src={require("../../../img/header/12.jpg")} alt=""/>
                                                         </div>
                                                         <h3>아트 클래스</h3>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#" className="depth01">런칭캘린더</a></li>
-                            <li><a href="#" className="depth01">회원전용</a></li>
+                            <li><Link className="depth01">런칭캘린더</Link></li>
+                            <li><Link className="depth01">회원전용</Link></li>
                         </ul>
                         <ul className="resizeMenu">
-                            <li><a href="#">마이페이지</a></li>
-                            <li><a href="#">주문/배송 조회</a></li>
-                            <li><a href="#">고객지원센터</a></li>
-                            <li><a href="#">로그인</a></li>
-                            <li><a href="#">FAMILY SITES</a></li>
+                            <li><Link>마이페이지</Link></li>
+                            <li><Link>주문/배송 조회</Link></li>
+                            <li><Link>고객지원센터</Link></li>
+                            <li><Link>로그인</Link></li>
+                            <li><Link>FAMILY SITES</Link></li>
                         </ul>
                         <dl className="resizeGnbFooter">
                             <dt>(유)컨버스 코리아 포트폴리오</dt>
@@ -245,16 +272,16 @@ const Header = () => {
                                 <Link to={'/cart'} className="btn_cart"><i className="xi-cart-o"></i></Link>
                             </li>
                             <li>
-                                <a><i className="xi-heart-o"></i></a>
+                                <Link><i className="xi-heart-o"></i></Link>
                                 </li>
                             <li>
-                                <a><i className="xi-help-o"></i></a>
+                                <Link><i className="xi-help-o"></i></Link>
                                 </li>
                             <li>
-                                <a href="#">
+                                <Link onClick={searchBox_toggle}>
                                     <i className="xi-search"></i>
                                     <i className="xi-close"></i>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -266,19 +293,19 @@ const Header = () => {
                         <div className="left">
                             <div className="leftBox01 clearFix">
                                 <div className="videoCon">
-                                    <a href="">
+                                    <Link>
                                         <video muted autoPlay loop playsInline>
                                             <source src={require("../../../img/header/searchBox_video.mp4")} type="video/mp4" />
                                         </video>
                                         <div className="hoverBox">
                                             <p>더 알아보기</p>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="bestSellerCon">
                                     <dl>
                                         <dt>베스트셀러</dt>
-                                        <dd><a href=""><i className="xi-arrow-right"></i>구매하기</a></dd>
+                                        <dd><Link><i className="xi-arrow-right"></i>구매하기</Link></dd>
                                     </dl>
                                     <div className="imgBox">
                                         <img src={require("../../../img/header/searchBox_img01.jpg")} alt=""/>
@@ -289,19 +316,19 @@ const Header = () => {
                                 <div className="faqCon">
                                     <dl>
                                         <dt>무엇을 도와드릴까요?</dt>
-                                        <dd><a href=""><i className="xi-arrow-right"></i>FAQ에서 궁금한 내용을 찾아보세요.</a></dd>
+                                        <dd><Link><i className="xi-arrow-right"></i>FAQ에서 궁금한 내용을 찾아보세요.</Link></dd>
                                     </dl>
                                     <div className="imgBox">
                                         <img src={require("../../../img/header/searchBox_gif.gif")} alt=""/>
                                     </div>
                                 </div>
                                 <div className="imgCon">
-                                    <a href="">
+                                    <Link>
                                         <img src={require("../../../img/header/searchBox_img02.jpg")} alt=""/>
                                         <div className="hoverBox">
                                             <p>더 알아보기</p>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -310,18 +337,18 @@ const Header = () => {
                                 <h3>검색</h3>
                                 <label className="contentsBox">
                                     <input type="search" placeholder="검색어를 입력해주세요" />
-                                    <a href="#" title="검색버튼" className="searchBtn">
+                                    <Link title="검색버튼" className="searchBtn">
                                         <i className="xi-search"></i>
-                                    </a>
+                                    </Link>
                                 </label>
                             </form>
                             <div className="bestSearch">
                                 <h3>인기 검색어</h3>
                                 <ul className="bestSearchList">
-                                    <li><a href="">척테일러</a></li>
-                                    <li><a href="">잭퍼셀</a></li>
-                                    <li><a href="">척 70</a></li>
-                                    <li><a href="">셰입스</a></li>
+                                    <li><Link>척테일러</Link></li>
+                                    <li><Link>잭퍼셀</Link></li>
+                                    <li><Link>척 70</Link></li>
+                                    <li><Link>셰입스</Link></li>
                                 </ul>
                             </div>
                         </div>
