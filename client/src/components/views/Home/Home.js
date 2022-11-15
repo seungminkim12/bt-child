@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 /** 비디오 링크 */
 import videoSrc from "../../../img/index/section01/video.mp4"
 
@@ -28,12 +29,12 @@ const Home = () => {
                             새로운 모습으로 탄생한 척 70을 선보입니다.
                         </dd>
                         <dd className="btnMore">
-                            <a href="#">더 알아보기</a>
+                            <Link>더 알아보기</Link>
                         </dd>
                     </dl>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link>
                         <h3>
                             BEST SELLER<br/>
                             NEW ARRIVAL
@@ -52,10 +53,10 @@ const Home = () => {
                             <dt>척 70 시즈널 레더</dt>
                             <dd>105,000 원</dd>
                         </dl>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link>
                         <h3>
                             BEST SELLER<br/>
                             NEW ARRIVAL
@@ -74,10 +75,10 @@ const Home = () => {
                             <dt>척 70 시즈널 스웨이드</dt>
                             <dd>105,000 원</dd>
                         </dl>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link>
                         <h3>
                             NEW ARRIVAL<br/>
                             ONLINE ONLY
@@ -96,10 +97,10 @@ const Home = () => {
                             <dt>척70 시즈널 캔버스</dt>
                             <dd>95,000 원</dd>
                         </dl>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link>
                         <h3>NEW ARRIVAL</h3>
                         <div className="btnWish">
                             <i className="xi-heart-o"></i>
@@ -115,7 +116,7 @@ const Home = () => {
                             <dt>척70 시즈널 캔버스</dt>
                             <dd>95,000 원</dd>
                         </dl>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </section>
@@ -124,47 +125,47 @@ const Home = () => {
             <article className="item">
                 <div className="title">
                     <h3>CHOOSE YOUR ICON</h3>
-                    <a href="#" className="btnMore">
+                    <Link className="btnMore">
                         <i className="xi-arrow-right"></i>
                         <span>바로가기</span>
-                    </a>
+                    </Link>
                 </div>
                 <ul className="itemList clearFix">
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section02/01.jpg")} alt="척테일러 올스타"/>
                             </div>
                             <h3>척테일러 올스타</h3>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section02/02.jpg")} alt="척 70"/>
                             </div>
                             <h3>척 70</h3>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section02/03.jpg")} alt="원스타"/>
                             </div>
                             <h3>원스타</h3>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section02/04.jpg")} alt="잭퍼셀"/>
                             </div>
                             <h3>잭퍼셀</h3>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </article>
-            <a href="#" className="responseBtn">신발 전체 보기</a>
+            <Link className="responseBtn">신발 전체 보기</Link>
         </section>
         <section id="section03">
             <h2 className="hidden">section03</h2>
@@ -182,12 +183,12 @@ const Home = () => {
                                 컨버스 리프트 클린 레더와 함께하세요.
                             </dd>
                             <dd className="btnMore">
-                                <a href="#">구매하기</a>
+                                <Link>구매하기</Link>
                             </dd>
                         </dl>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section03/box01_02.jpg")} alt="척테일러 올스타 리프트 클린 레더 블랙"/>
                             </div>
@@ -195,10 +196,10 @@ const Home = () => {
                             <div className="hoverTxt">
                                 <p>구매 하기</p>
                             </div>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section03/box01_03.jpg")} alt="척테일러 올스타 리프트 클린 레더 화이트"/>
                             </div>
@@ -206,7 +207,7 @@ const Home = () => {
                             <div className="hoverTxt">
                                 <p>구매 하기</p>
                             </div>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </article>
@@ -214,7 +215,7 @@ const Home = () => {
                 <h2 className="hidden">box02</h2>
                 <ul className="clearFix">
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section03/box02_01.jpg")} alt="척 70 빈티지 캔버스 새들"/>
                             </div>
@@ -222,7 +223,7 @@ const Home = () => {
                             <div className="hoverTxt">
                                 <p>구매 하기</p>
                             </div>
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <div className="imgBox">
@@ -236,12 +237,12 @@ const Home = () => {
                                 쌀쌀해진 가을에 어울리는 척 70 컬러웨이,<br/> 새들과 모노크롬블랙으로 트렌디한 코디를 완성하세요.
                             </dd>
                             <dd className="btnMore">
-                                <a href="#">구매하기</a>
+                                <Link>구매하기</Link>
                             </dd>
                         </dl>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <h3>
                                 BEST SELLER<br/>
                                 NEW ARRIVAL
@@ -260,10 +261,10 @@ const Home = () => {
                                 <dt>척 70 시즈널 레더</dt>
                                 <dd>85,500 원</dd>
                             </dl>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <h3>
                                 BEST SELLER<br/>
                                 NEW ARRIVAL
@@ -282,7 +283,7 @@ const Home = () => {
                                 <dt>척 70 시즈널 레더</dt>
                                 <dd>80,100 원</dd>
                             </dl>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </article>
@@ -304,13 +305,13 @@ const Home = () => {
                             </dd>
                         </dl>
                         <ul className="btnList">
-                            <li><a href="#">신발</a></li>
-                            <li><a href="#">의류&악세서리</a></li>
-                            <li><a href="#">아동</a></li>
+                            <li><Link>신발</Link></li>
+                            <li><Link>의류&악세서리</Link></li>
+                            <li><Link>아동</Link></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section03/box03_02.jpg")} alt=""/>
                             </div>
@@ -318,10 +319,10 @@ const Home = () => {
                             <div className="hoverTxt">
                                 <p>구매 하기</p>
                             </div>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section03/box03_03.jpg")} alt=""/>
                             </div>
@@ -329,7 +330,7 @@ const Home = () => {
                             <div className="hoverTxt">
                                 <p>구매 하기</p>
                             </div>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </article>
@@ -340,164 +341,164 @@ const Home = () => {
                 <h3>CONVERSE COMMUNITY</h3>
                 <ul className="communityList clearFix">
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/01.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/02.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/03.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/04.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/05.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/06.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/07.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/08.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/09.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/10.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/11.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/12.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/13.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/14.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/15.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/16.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/17.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/18.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/19.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link>
                             <div className="imgBox">
                                 <img src={require("../../../img/index/section04/20.jpg")} alt=""/>
                             </div>
                             <i className="xi-tag"></i>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <button className="btnMore">더보기</button>
@@ -562,7 +563,7 @@ const Home = () => {
                                 더 알아보세요.
                             </dd>
                         </dl>
-                        <a href="#" className="btnMore">자세히 보기</a>
+                        <Link className="btnMore">자세히 보기</Link>
                     </li>
 
                     <li>
@@ -608,13 +609,13 @@ const Home = () => {
                                 더욱 특별한 혜택을 누려보세요.
                             </dd>
                         </dl>
-                        <a href="#" className="btnMore">회원 가입 하기</a>
+                        <Link className="btnMore">회원 가입 하기</Link>
                     </li>
 
                     <li>
                         <div className="iconBox">
-                            <a href="#" className="iconLink"><i className="xi-facebook"></i></a>
-                            <a href="#" className="iconLink"><i className="xi-instagram"></i></a>
+                            <Link className="iconLink"><i className="xi-facebook"></i></Link>
+                            <Link className="iconLink"><i className="xi-instagram"></i></Link>
                         </div>
                         <dl>
                             <dt>Follow Us</dt>
