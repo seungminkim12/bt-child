@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Table = () => {
+const Tables = () => {
     const list = {
         data:[
             { num: "1", cate: "욕실", catewrap: "대분류",exposure:"노출"},
@@ -20,7 +20,7 @@ const Table = () => {
                     <th>이미지</th>
                     <th>분류</th>
                     <th>노출여부</th>
-                    <th colspan="8">관리</th>
+                    <th colSpan="8">관리</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,8 +31,8 @@ const Table = () => {
                             <td>{item.cate}</td>
                             <td>{item.catewrap}</td>
                             <td>{item.exposure}</td>
-                            <td colspan="7"></td>
-                            <td><button type="button" class="btn-sm-ln">수정</button></td>
+                            <td colSpan="7"></td>
+                            <td><button type="button" className="btn-sm-ln">수정</button></td>
                         </tr>
                     );
                 })}
@@ -41,4 +41,4 @@ const Table = () => {
     );
 };
   
-export default Table;
+export default Tables;

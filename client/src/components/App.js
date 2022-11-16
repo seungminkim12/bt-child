@@ -26,26 +26,50 @@ const RegisterPage = lazy(() => import('./views/RegisterPage/RegisterPage'))
 
 //admin
 const AdminLogin = lazy(() => import('./views/Admin/Login/Login'))
+// category
 const Category = lazy(() => import('./views/Admin/Category/Category'))
+const CategoryRgst = lazy(() => import('./views/Admin/Category/CategoryRgst'))
+const CategoryRgstSm = lazy(() => import('./views/Admin/Category/CategoryRgstSm'))
+//member
+const Member = lazy(() => import('./views/Admin/Member/Member'))
+const MemberDetail = lazy(() => import('./views/Admin/Member/MemberDetail'))
+const MemberRgst = lazy(() => import('./views/Admin/Member/MemberRgst'))
+//Product
+const Product = lazy(() => import('./views/Admin/Product/Product'))
+const ProductRgst = lazy(() => import('./views/Admin/Product/ProductRgst'))
+
+
+
+
 
 
 const App = () => {
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
-        <Route element={<Layout />}>
-          {/* user */}
-          <Route index element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="cart" element={<CartPage />} />
-
+          <Route element={<Layout />}>
+            {/* user */}
+            <Route index element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path="*" element={<p>There's nothing here: 404!</p>} />
+          </Route>
+          
           {/* admin */}
           <Route path="AdminLogin" element={<AdminLogin />} />
           <Route path="Category" element={<Category />} />
+          <Route path="CategoryRgst" element={<CategoryRgst />} />
+          <Route path="CategoryRgstSm" element={<CategoryRgstSm />} />
+          <Route path="Member" element={<Member />} />
+          <Route path="MemberDetail" element={<MemberDetail />} />
+          <Route path="MemberRgst" element={<MemberRgst />} />
+          <Route path="Product" element={<Product />} />
+          <Route path="ProductRgst" element={<ProductRgst />} />
+
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
-        </Route>
+        {/* </Route> */}
       </Routes>
     </Suspense>
   );
