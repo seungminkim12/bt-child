@@ -42,6 +42,8 @@ const ProductRgst = lazy(() => import('./views/Admin/Product/ProductRgst'))
 
 
 
+const hideHeader = true;
+
 
 const App = () => {
   return (
@@ -82,9 +84,9 @@ const Layout = () => {
 
   return (
     <>
-      <Header />
+      {hideHeader ?  null : <Header />}      
       <Outlet />
-      <Footer/>
+      {hideHeader ? null : <Footer />}
     </>
   );
 };
