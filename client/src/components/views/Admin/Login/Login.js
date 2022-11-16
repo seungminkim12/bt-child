@@ -1,4 +1,6 @@
 import React from 'react'
+import '../../../../css/admin/layout_adm.css'
+import '../../../../css/admin/style_adm.css'
 
 const Login = () => {
     return (
