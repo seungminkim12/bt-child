@@ -28,6 +28,8 @@ const RegisterPage = lazy(() => import('./views/RegisterPage/RegisterPage'))
 const AdminLogin = lazy(() => import('./views/Admin/Login/Login'))
 const Category = lazy(() => import('./views/Admin/Category/Category'))
 
+const hideHeader = true;
+
 
 const App = () => {
   return (
@@ -58,9 +60,9 @@ const Layout = () => {
 
   return (
     <>
-      <Header />
+      {hideHeader ?  null : <Header />}      
       <Outlet />
-      <Footer/>
+      {hideHeader ? null : <Footer />}
     </>
   );
 };
