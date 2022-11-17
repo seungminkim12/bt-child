@@ -26,7 +26,7 @@ const Tables = () => {
             <tbody>
                 {list.data.map((item) => {
                     return (
-                        <tr>
+                        <tr key={item.num}>
                             <td>{item.num}</td>
                             <td>{item.cate}</td>
                             <td>{item.catewrap}</td>

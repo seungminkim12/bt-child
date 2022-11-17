@@ -17,7 +17,7 @@ const Category = () => {
               <div className="title">
                   <h2>대분류/소분류 관리</h2> 
                   <div className="button_box">                    
-                      <button type="button" onclick="location.href='../../page/product/category_rgst.html'">대분류 등록</button>
+                      <button type="button">대분류 등록</button>
                   </div>                               
               </div>            
           </div>    
