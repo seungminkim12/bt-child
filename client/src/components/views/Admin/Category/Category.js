@@ -1,12 +1,14 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
+
 //css
 import '../../../../css/admin/reset_adm.css'
 import '../../../../css/admin/layout_adm.css'
 import '../../../../css/admin/style_adm.css'
 
-import Tables from './components/Table';
-import SideMenu from './components/SideMenu';
-import PageNation from './components/PageNation';
+import Tables from '../components/Table';
+import SideMenu from '../components/SideMenu';
+import PageNation from '../components/PageNation';
 
 const Category = () => {
     return (
@@ -17,7 +19,7 @@ const Category = () => {
               <div className="title">
                   <h2>대분류/소분류 관리</h2> 
                   <div className="button_box">                    
-                      <button type="button">대분류 등록</button>
+                      <NavLink to="/CategoryRgst"><button type="button">대분류 등록</button></NavLink>
                   </div>                               
               </div>            
           </div>    

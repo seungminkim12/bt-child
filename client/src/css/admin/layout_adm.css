@@ -77,7 +77,6 @@
     /* background: #000 url(../img/icon_nav_arrow.png) no-repeat 95% 12px; */
 }
 .lnb > ul > li ul {
-    display: none;
     background: #f8f8f8;
 }
 .lnb > ul > li > ul > li > a {
