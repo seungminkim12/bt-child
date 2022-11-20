@@ -5,6 +5,17 @@ import "../../../css/layout.css"
 import "../../../css/response.css"
 
 const CartPage = () => {
+
+    const toggle_info = (e) => {
+        if(e.currentTarget.nextElementSibling.style.display === "" || e.currentTarget.nextElementSibling.style.display === "none"){
+            e.currentTarget.nextElementSibling.style.display="block"
+            e.currentTarget.classList.add("on")
+        } else {
+            e.currentTarget.nextElementSibling.style.display="none"
+            e.currentTarget.classList.remove("on")
+        }
+    }
+
     return (
       <section id="cart">
         <h2 className="hidden">장바구니</h2>
@@ -107,7 +118,7 @@ const CartPage = () => {
                     <Link>프로모션/쿠폰은 주문페이지에서 확인됩니다.</Link>
                 </dd>
                 <dd className="toggle_info">
-                    <button>이용안내</button>
+                    <button onClick={toggle_info}>이용안내</button>
                     <ul>
                         <li>실 결제 금액은 주문서 내 고객님의 쿠폰/할인 적용에 따라 달라집니다.</li>
                         <li>실제 쿠폰코드의 적용여부는 금액에서 확인하여 주세요.</li>
@@ -116,7 +127,7 @@ const CartPage = () => {
                     </ul>
                 </dd>
                 <dd className="toggle_info">
-                    <button>배송비 안내</button>
+                    <button onClick={toggle_info}>배송비 안내</button>
                     <ul>
                         <li>총 구매금액이 5만원 이상인 경우,배송비는 무료입니다. (5만원 미만인 경우,배송비 2,500원이 별도 부가됩니다.)</li>
                         <li>장기간 장바구니에 보관하신 상품은 시간이 지남에 따라 가격과 혜택이 변동 될 수 있으며, 최대 30일 동안 보관됩니다.</li>

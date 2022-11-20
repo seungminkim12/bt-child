@@ -338,6 +338,7 @@ body.searchHidden .searchBox .container {
   height: 100%;
   overflow-x: hidden;
   transition: 0.25s ease;
+  z-index: -999;
 }
 .searchBox .container {
   position: absolute;

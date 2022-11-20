@@ -381,6 +381,7 @@ body {
     height: 100%;
     overflow-x: hidden;
     transition: 0.25s ease;
+    z-index: -999;
     .container {
         position: absolute;
         left: 100%;
