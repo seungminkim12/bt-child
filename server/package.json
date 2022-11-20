@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon --exec ts-node -r tsconfig-paths/register index.ts",
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+    "server": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "build":"tsc && node build/src/app.js"
   },
   "author": "",
   "license": "ISC",
