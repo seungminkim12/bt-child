@@ -10,9 +10,9 @@ const SideMenu = () => {
         <div className="header">   
             <a href="./login.html" className="log">로그아웃</a>      
             <div className="left_menu">
-                <a href="#" className="logo_sm">
+            <NavLink to="/Category" className="logo_sm">
                     <h1>컨버스</h1>
-                </a>
+                </NavLink>
                 <div className="lnb">
                     <ul>
                         <li>

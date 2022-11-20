@@ -263,6 +263,10 @@ td {
     height: 60px;
     border: 1px solid #f1f1f1;    
 }
+td img{
+   width: 150px;
+   height: 150px;  
+}
 table tr:nth-child(odd) { background-color: #fff; }
 table tr:nth-child(even) { background-color: #f8f8f8 ;}
 
