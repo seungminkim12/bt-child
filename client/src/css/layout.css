@@ -1358,6 +1358,7 @@ body.searchHidden .searchBox .container {
 
 /* 로그인 */
 #login_form {
+  position: relative;
   width: 1300px;
   margin: 0 auto;
 }

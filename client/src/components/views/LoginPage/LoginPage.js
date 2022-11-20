@@ -21,7 +21,7 @@ const Login = () => {
                 <li><Link className="kakao_login"><img/>카카오 계정으로 1초 로그인</Link></li>
             </ul>
             <ul className="util">
-                <li><Link className="btn_join"><span className="txt">회원가입</span> <span className="ps">신규 가입 쿠폰 1만원 지급</span> </Link></li>
+                <li><Link to={"/register"} className="btn_join"><span className="txt">회원가입</span> <span className="ps">신규 가입 쿠폰 1만원 지급</span> </Link></li>
                 <li><Link className="unknown_info"><span className="txt">비회원 주문조회</span></Link></li>
             </ul>
             <dl className="qna_box">
