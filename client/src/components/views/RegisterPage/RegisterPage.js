@@ -4,6 +4,20 @@ import "../../../css/layout.css"
 import "../../../css/response.css"
 import { Link } from 'react-router-dom';
 const RegisterPage = () => {
+    const join_submit = () => {
+        fetch("https://localhost:1337/api/users",{
+            method:"POST",
+            body: JSON.stringify({
+                name:"testPSH",
+                password:"123456",
+                passwordConfirmation:"123456",
+                email:"test1234@nate.com"
+            })
+        }).then((rs)=>{
+            console.log(rs)
+        })
+    }
+
     return (
       <section id="join">
         <h2 className="hidden">회원가입</h2>
@@ -122,7 +136,7 @@ const RegisterPage = () => {
                             <label htmlFor="">(필수) 개인정보 수집 및 이용에 대한 동의</label>
                         </dd>
                     </dl>
-                    <button className="btn_submit" type="submit">회원가입하기 (만 14세 이상)</button>
+                    <button onClick={join_submit} className="btn_submit" type="button">회원가입하기 (만 14세 이상)</button>
                 </div>
             </div>
         </form>
