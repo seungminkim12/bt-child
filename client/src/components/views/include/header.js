@@ -43,7 +43,6 @@ const Header = () => {
             contents:"컨버스와 함께하는 스페셜 오퍼 UPTO 40%"
         }
     ]
-    let index;
 
     useEffect(()=>{
         let txtWarpper = document.querySelector("#headerSlide .mask .txtWarp");
