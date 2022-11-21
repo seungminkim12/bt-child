@@ -46,9 +46,8 @@ body.searchHidden .searchBox .container {
   overflow: hidden;
 }
 #headerSlide .mask .txtWarp {
-  position: relative;
   display: flex;
-  transition: all 700 ease;
+  transition: all 0.5s;
 }
 #headerSlide .mask .txtWarp .txtSlide {
   position: relative;
@@ -65,6 +64,7 @@ body.searchHidden .searchBox .container {
   margin: 15.91px 0;
 }
 #headerSlide .mask .txtWarp .txtSlide span strong {
+  display: block;
   font-weight: 700;
 }
 
@@ -338,6 +338,7 @@ body.searchHidden .searchBox .container {
   height: 100%;
   overflow-x: hidden;
   transition: 0.25s ease;
+  z-index: -999;
 }
 .searchBox .container {
   position: absolute;
@@ -1358,7 +1359,6 @@ body.searchHidden .searchBox .container {
 
 /* 로그인 */
 #login_form {
-  position: relative;
   width: 1300px;
   margin: 0 auto;
 }

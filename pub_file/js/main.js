@@ -1,14 +1,34 @@
 const txtWarpper = $("#headerSlide .txtWarp");
 
-let currentIndex = 0;
+let currentIndex;
 
-setInterval(function(){
-    txtWarpper.animate({left: "-100%"},
-    function(){
-        $(".txtSlide:first-child").appendTo(txtWarpper);
-        txtWarpper.css("left","");
+// setInterval(function(){
+//     txtWarpper.animate({left: "-100%"},
+//     function(){
+//         $(".txtSlide:first-child").appendTo(txtWarpper);
+//         txtWarpper.css("left","");
+//     });
+// }, 3000);
+
+txtWarpper.get(0).addEventListener("transitionend",function(){
+    if(currentIndex === 1){
+        txtWarpper.get(0).prepend(txtWarpper.get(0).lastElementChild)
+    } else {
+        txtWarpper.get(0).prepend(txtWarpper.get(0).firstElementChild)
+    }
+
+    txtWarpper.get(0).style.transition = "none";
+    txtWarpper.get(0).style.transform = 'translate(0)';
+    setTimeout(() => {
+        txtWarpper.get(0).style.transition = 'all 0.5s';
     });
-}, 3000);
+},false)
+
+setInterval(() => {
+    txtWarpper.get(0).style.transform = 'translate(-100%)';
+}, 2000);
+
+
 
 $(window).on("scroll",function(){
     if ($("#header").scrollTop() < $(window).scrollTop()){

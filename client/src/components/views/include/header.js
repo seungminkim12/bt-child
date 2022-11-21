@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -29,29 +29,97 @@ const Header = () => {
         e.currentTarget.parentNode.classList.remove("active")
     }
 
+    let slide_contents = [
+        {
+            head:"NEW",
+            contents:"척 70 시즈널 스웨이드 출시"
+        },
+        {
+            head:"NEW",
+            contents:"척테일러 올스타 리프트 클린 레더 하이 출시"
+        },
+        {
+            head:"PROMOTION",
+            contents:"컨버스와 함께하는 스페셜 오퍼 UPTO 40%"
+        }
+    ]
+    let index;
+
+    useEffect(()=>{
+        let txtWarpper = document.querySelector("#headerSlide .mask .txtWarp");
+        for(let i=0; i<slide_contents.length; i++){
+            // let strong = React.createElement(
+            //     "strong",
+            //     null,
+            //     slide_contents[i].head
+            // );
+
+            // let li = React.createElement(
+            //     "li",
+            //     {class:"txtSlide"},
+            //     strong,slide_contents.contents
+            // )
+
+            let li = document.createElement("li");
+            let temp = 
+            `
+            <span>
+                <strong>${slide_contents[i].head}</strong>
+                ${slide_contents[i].contents}
+            </span>
+            `;
+
+            li.setAttribute("class","txtSlide")
+            li.innerHTML=temp;
+
+            document.querySelector(".txtWarp").append(li);
+        }        
+
+        let currentIndex;
+        
+        txtWarpper.addEventListener("transitionend",function(){
+            if(currentIndex === 1){
+                txtWarpper.prepend(txtWarpper.lastElementChild)
+            } else {
+                txtWarpper.prepend(txtWarpper.firstElementChild)
+            }
+        
+            txtWarpper.style.transition = "none";
+            txtWarpper.style.transform = 'translate(0)';
+            setTimeout(() => {
+                txtWarpper.style.transition = 'all 0.5s';
+            });
+        },false)
+        
+        setInterval(() => {
+            txtWarpper.style.transform = 'translate(-100%)';
+        }, 2000);
+
+    })
+
     return (
         <> 
             <div id="headerSlide">
                 <div className="mask">
                     <ul className="txtWarp">
-                        <li className="txtSlide">
+                        {/* <li className="txtSlide">
                             <span>
-                                <strong>NEW</strong><br/>
+                                <strong>NEW</strong>
                                 척 70 시즈널 스웨이드 출시
                             </span>
                         </li>
                         <li className="txtSlide">
                             <span>
-                                <strong>NEW</strong><br/>
+                                <strong>NEW</strong>
                                 척테일러 올스타 리프트 클린 레더 하이 출시
                             </span>
                         </li>
                         <li className="txtSlide">
                             <span>
-                                <strong>PROMOTION</strong><br/>
+                                <strong>PROMOTION</strong>
                                 컨버스와 함께하는 스페셜 오퍼 UPTO 40%
                             </span>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -357,7 +425,6 @@ const Header = () => {
             </div>
         </>
     )
-    
 }
 
 
