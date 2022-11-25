@@ -1839,9 +1839,15 @@ body {
                                 color: #9b9b9b;
                                 background-color: #f4f4f4;
                                 border: 1px solid #e5e5e5;
-
+                                cursor: pointer;
                                 &:first-child {
                                     border-right: none;
+                                }
+
+                                &.on {
+                                    color: #000;
+                                    background-color: #fff;
+                                    border: 1px solid #000;
                                 }
                             }
                         }

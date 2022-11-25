@@ -1665,9 +1665,15 @@ body.searchHidden .searchBox .container {
   color: #9b9b9b;
   background-color: #f4f4f4;
   border: 1px solid #e5e5e5;
+  cursor: pointer;
 }
 #join #join_form > div.input_box .input_list li.gender label:first-child {
   border-right: none;
+}
+#join #join_form > div.input_box .input_list li.gender label.on {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
 }
 #join #join_form > div.chk_box {
   margin-top: 80px;

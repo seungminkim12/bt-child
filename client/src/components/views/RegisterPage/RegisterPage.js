@@ -1,21 +1,109 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
 import { Link } from 'react-router-dom';
+
+
 const RegisterPage = () => {
-    const join_submit = () => {
-        fetch("https://localhost:1337/api/users",{
-            method:"POST",
-            body: JSON.stringify({
-                name:"testPSH",
-                password:"123456",
-                passwordConfirmation:"123456",
-                email:"test1234@nate.com"
+    useEffect(()=>{
+        let gender = document.querySelectorAll(".gender input");/** 성별 체크 */
+        let agree_allChk = document.getElementById("chk_all");/** 약관 전체 동의 */
+        let agree_chk = document.querySelectorAll(".chk");/** 개별 체크 */
+
+        gender_chk(gender);
+        chk_box(agree_allChk, agree_chk)
+        return () => {
+            console.log("컴포넌트가 사라졌을시")
+        }
+    })
+
+    /**
+     * 성별 체크박스 이벤트
+     * @param {Element} element 
+     */
+    const gender_chk = (element) => {
+        for(let i=0; i<element.length; i++){
+            let siblings = element[i].parentElement.parentElement.children;
+            element[i].addEventListener("change",function(){
+                for(let j=0; j<element.length; j++){
+                    siblings[j].classList.remove("on");
+                    siblings[j].querySelector("input").checked=false
+                }
+
+                element[i].parentElement.classList.add("on");
+                element[i].checked=true
             })
-        }).then((rs)=>{
-            console.log(rs)
+        }
+    }
+
+    /**
+     * 약관 체크박스 이벤트
+     * @param {Element} allChk
+     * 전체 체크
+     * 
+     * @param {Element} chkElement 
+     * 개별 약관 체크
+     */
+    const chk_box = (allChk ,chkElement) => {
+        /** 전체동의 */
+        allChk.addEventListener("change",function(){
+            if(this.checked){
+                chkElement.forEach(el=>el.checked = true)
+            } else {
+                chkElement.forEach(el=>el.checked = false)
+            }
+
         })
+
+        /** 체크 완료된 항목 */
+        let checked_arr = [];
+        /** 개별체크 */
+        chkElement.forEach(el=>{
+            el.addEventListener("change",function(){
+                if(el.checked){
+                    checked_arr.push(this)
+                    
+                } else {
+                   let delete_num = checked_arr.findIndex(data => data === this);
+                   checked_arr.splice(delete_num,1)
+                }
+
+                if(checked_arr.length === document.querySelectorAll(".chk").length){
+                    allChk.checked=true
+                } else {
+                    allChk.checked=false
+                }
+            })
+        })        
+    }
+    
+    const join_submit = () => {
+        if(!document.getElementById("chk_user_info").checked || !document.getElementById("chk_personal_info").checked){
+            alert("필수항목 체크 안함")
+        } 
+        else {
+            fetch("http://localhost:1377/api/users",{
+                method:"POST",
+                mode: 'no-cors', // no-cors, cors, *same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrer: 'no-referrer', // no-referrer, *client
+                body:JSON.stringify({
+                    name:"testPSH",
+                    password:"123456",
+                    passwordConfirmation:"123456",
+                    email:"test1234@nate.com"
+                })
+            }).then((rs)=>{
+                console.log(rs)
+            })
+        }
     }
 
     return (
@@ -114,12 +202,12 @@ const RegisterPage = () => {
                             컨버스 공식 온라인 스토어 회원 약관 및 개인정보 수집•이용에 대한 동의
                         </dt>
                         <dd>
-                            <input type="checkbox" name="" id=""/>
-                            <label htmlFor="">(필수) 이용 약관에 대한 동의</label>
+                            <input type="checkbox" className='chk' name={"personal_info"} id="chk_personal_info"/>
+                            <label htmlFor="chk_personal_info">(필수) 이용 약관에 대한 동의</label>
                         </dd>
                         <dd>
-                            <input type="checkbox" name="" id=""/>
-                            <label htmlFor="">(필수) 개인정보 수집 및 이용에 대한 동의</label>
+                            <input type="checkbox" className='chk' name={"user_info"} id="chk_user_info"/>
+                            <label htmlFor="chk_user_info">(필수) 개인정보 수집 및 이용에 대한 동의</label>
                         </dd>
                     </dl>
                     <dl className="chk_dl">
@@ -128,12 +216,12 @@ const RegisterPage = () => {
                             <span>(회원 전용 다양한 이벤트 소식을 받아보세요)</span>
                         </dt>
                         <dd>
-                            <input type="checkbox" name="" id=""/>
-                            <label htmlFor="">(필수) 이용 약관에 대한 동의</label>
+                            <input type="checkbox" className='chk' name="service_event" id="chk_service_event"/>
+                            <label htmlFor="chk_service_event">(선택) 이벤트 수신 동의</label>
                         </dd>
                         <dd>
-                            <input type="checkbox" name="" id=""/>
-                            <label htmlFor="">(필수) 개인정보 수집 및 이용에 대한 동의</label>
+                            <input type="checkbox" className='chk' name="service_message" id="chk_service_message"/>
+                            <label htmlFor="chk_service_message">(선택) 문자 수신동의</label>
                         </dd>
                     </dl>
                     <button onClick={join_submit} className="btn_submit" type="button">회원가입하기 (만 14세 이상)</button>
