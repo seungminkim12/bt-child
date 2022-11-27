@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 //css
 import '../../../../css/admin/reset_adm.css'
@@ -19,9 +19,9 @@ const Member = () => {
           <div class="top"> 
               <div class="title">
                   <h2>회원 관리</h2> 
-                  <div class="button_box">                    
+                  {/* <div class="button_box">                    
                       <button type="button" class="gray" onclick="location.href='../../page/member/member_rgst.html'">회원등록</button>
-                  </div>                               
+                  </div>                                */}
               </div>            
           </div>
               

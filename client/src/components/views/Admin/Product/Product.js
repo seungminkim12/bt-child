@@ -20,7 +20,10 @@ const Product = () => {
                 <div className="title">
                     <h2>상품 관리</h2> 
                     <div className="button_box">                    
-                        <button type="button">상품 등록</button>
+                        <NavLink to="/ProductRgst">
+                            <button type="button">상품 등록</button>
+                        </NavLink>
+                        
                         <button type="button" className="gray">선택 삭제</button>
                     </div>                               
                 </div>            
