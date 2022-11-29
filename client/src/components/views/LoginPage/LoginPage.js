@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
 const Login = () => {
+    useEffect(() => {
+        if(localStorage.getItem("joinComplete") != null){
+            alert("회원가입이 완료 되었습니다. 가입한 아이디로 로그인 해주세요.")
+        }
+    })
+
     return (
       <form action="" id="login_form" method="post">
         <div className="inner">

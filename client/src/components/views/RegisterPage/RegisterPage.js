@@ -3,9 +3,11 @@ import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
 import { Link } from 'react-router-dom';
+import axios from "axios"
 
 
 const RegisterPage = () => {
+
     useEffect(()=>{
         let gender = document.querySelectorAll(".gender input");/** 성별 체크 */
         let agree_allChk = document.getElementById("chk_all");/** 약관 전체 동의 */
@@ -77,33 +79,220 @@ const RegisterPage = () => {
             })
         })        
     }
-    
+    // 
     const join_submit = () => {
-        if(!document.getElementById("chk_user_info").checked || !document.getElementById("chk_personal_info").checked){
-            alert("필수항목 체크 안함")
-        } 
-        else {
-            fetch("http://localhost:1377/api/users",{
+        join_progress(0)
+        .then(()=>{
+            return join_progress(1)
+        })
+        .then(()=>{
+            return join_progress(2)
+        })
+        .then(()=>{
+            return join_progress(3)
+        })
+        .then(()=>{
+            return join_progress(4)
+        })
+        .then(()=>{
+            return join_progress(5)
+        })
+        .then(()=>{
+            return join_progress(6)
+        })
+        .then(()=>{
+            return join_progress(7)
+        })
+        .then(()=>{
+            let _email = document.getElementById("join_id").value;
+            let _password = document.getElementById("join_pw").value;
+            let _passwordConfirmation = document.getElementById("join_pwCheck").value;
+            let _name = document.getElementById("join_name").value;
+            let _phoneNumber = document.getElementById("call_first").value + document.getElementById("call_middle").value + document.getElementById("call_last").value;
+            let _birth = `${document.getElementById("join_birthYear").value}.${document.getElementById("join_birthMonth").value}.${document.getElementById("join_birthDate").value}`
+            let _gender = document.getElementById("gender_man").checked ? "man" : "woman"
+            
+            fetch("/api/users",{
                 method:"POST",
-                mode: 'no-cors', // no-cors, cors, *same-origin
-                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: 'same-origin', // include, *same-origin, omit
+            // mode: 'cors', // no-cors, cors, *same-origin
+            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'same-origin', // include, *same-origin, omit
+            // redirect: 'follow', // manual, *follow, error
+            // referrer: 'no-referrer', // no-referrer, *client
                 headers: {
-                    'Content-Type': 'application/json',
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    "X-Powered-By":"Express",
+                    "Content-Type":"application/json; charset=utf-8",
+                    "ETag":'W/"2f-tVeQsHeD5w7sUHaMuEfYDyucLG0"',
+                    "Date":new Date().toUTCString(),
+                    "Connection":"keep-alive",
+                    "Keep-Alive":"timeout=5"
                 },
-                redirect: 'follow', // manual, *follow, error
-                referrer: 'no-referrer', // no-referrer, *client
                 body:JSON.stringify({
-                    name:"testPSH",
-                    password:"123456",
-                    passwordConfirmation:"123456",
-                    email:"test1234@nate.com"
+                    email: _email,
+                    password: _password,
+                    passwordConfirmation: _passwordConfirmation,
+                    name: _name,
+                    phoneNumber: _phoneNumber,
+                    birth: _birth,
+                    gender: _gender,
                 })
-            }).then((rs)=>{
-                console.log(rs)
             })
-        }
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem("joinComplete",true)
+                window.location.href="/login"
+            })
+            .catch((err1)=>{
+                console.log("err1",err1)
+            })            
+        })
+        .catch((err)=>{
+            alert(err.msg)
+        })
+
+    }
+
+    /**
+     * 회원가입 입력 확인
+     * @param {Number} type
+     * 0 : 이메일 
+     * 1 : 비번 
+     * 2 : 비번확인 
+     * 3 : 이름
+     * 4 : 폰번호
+     * 5 : 생년월일
+     * 6 : 성별체크
+     * 7 : 필수체크항목
+     */
+    const join_progress = (type) => {
+        return new Promise((resolve,reject) => {
+            let _value;
+            /** 이메일 */
+            if(type === 0){
+                /** 이메일 입력값 */
+                _value = document.getElementById("join_id").value;
+
+                /** 이메일 정규식 */
+                var regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
+                if(_value === ""){
+                    reject({errType:"이메일 미입력",msg:"이메일을 입력해 주세요."})
+                }
+                else if(!regex.test(_value)){
+                    reject({errType:"이메일 형식 오류",msg:"이메일 형식에 맞지 않습니다. 올바른 형식으로 입력해 주세요."})
+                } 
+                else {
+                    resolve()
+                }
+            }
+            /** 비번 */
+            if(type === 1){
+                /** 비밀번호 입력 값 */
+                _value = document.getElementById("join_pw").value;
+
+                if(_value === ""){
+                    reject({errType:"비밀번호 미입력",msg:"비밀번호를 입력해 주세요."})
+                }
+                else if(_value.length < 6){
+                    reject({errType:"비밀번호 형식 오류",msg:"비밀번호는 6자리 이상 입력해 주세요."})
+                }
+                else {
+                    resolve()
+                }
+            }
+            /** 비번확인 */
+            if(type === 2){
+                /** 비밀번호 입력한 값 */
+                let pw = document.getElementById("join_pw").value
+                
+                /** 비밀번호 입력확인 값  */
+                _value = document.getElementById("join_pwCheck").value;
+
+                if(_value === ""){
+                    reject({errType:"비밀번호확인 미입력",msg:"비밀번호를 한번더 입력해 주세요."})
+                }
+                else if(pw < _value){
+                    reject({errType:"비밀번호 확인 오류",msg:"비밀번호가 같지않습니다. 비밀번호를 확인해 주세요."})
+                }
+                else {
+                    resolve()
+                }
+            }
+            /** 이름 */
+            if(type === 3){
+                /** 비밀번호 입력확인 값  */
+                _value = document.getElementById("join_name").value;
+                if(_value === ""){
+                    reject({errType:"이름 미입력",msg:"이름을 입력해 주세요."})
+                } 
+                else {
+                    resolve()
+                }
+            }
+            /** 폰번호 */
+            if(type === 4){
+                let middle, last;
+                middle = document.getElementById("call_middle").value;
+                last = document.getElementById("call_last").value;
+
+                if(middle === "" || last === ""){
+                    reject({errType:"휴대폰번호 미입력",msg:"휴대폰 번호를 입력해 주세요."})
+                } else {
+                    resolve()
+                }
+            }
+            /** 생년월일 */
+            if(type === 5){
+                /** 비밀번호 입력확인 값  */
+                let year,month,date;
+
+                year = document.getElementById("join_birthYear").value;
+                month = document.getElementById("join_birthMonth").value;
+                date = document.getElementById("join_birthDate").value;
+                if(year === "" || month === "" || date === ""){
+                    reject({errType:"생년월일 미입력",msg:"생년월일을 입력해 주세요."})
+                } 
+                else {
+                    resolve()
+                }
+            }
+            /** 성별체크 */
+            if(type === 6){
+                /** 남자체크 */
+                let gender_man, 
+                
+                /** 여자체크 */
+                gender_woman;
+
+                gender_man = document.getElementById("gender_man").checked
+                gender_woman = document.getElementById("gender_woman").checked
+
+                if(!gender_man && !gender_woman){
+                    reject({errType:"성별 미체크",msg:"성별을 체크해주세요."})
+                } 
+                else {
+                    resolve()
+                }
+            }
+            /** 필수체크항목 */
+            if(type === 7){
+                /** 이용약관동의 */
+                let user_info, 
+
+                /**개인정보수집 및 이용 동의 */
+                personal_info;
+
+                user_info = document.getElementById("chk_user_info").checked;
+                personal_info = document.getElementById("chk_personal_info").checked;
+
+                if(!user_info || !personal_info){
+                    reject({errType:"필수 항목 미체크",msg:"필수항목을 체크해 주세요."})
+                } 
+                else {
+                    resolve()
+                }
+            }
+        })
     }
 
     return (
@@ -121,7 +310,7 @@ const RegisterPage = () => {
                 </dd>
             </dl>
         </div>
-        <form action="" id="join_form" method="post">
+        <form action="http://localhost:1337/api/users" id="join_form" method="post">
             <div className="input_box">
                 <div className="inner">
                     <ul className="btn_list">
@@ -137,7 +326,7 @@ const RegisterPage = () => {
                             <input type="password" id="join_pw" name="join_pw" placeholder="비밀번호(영문/숫자/특수문자 중 2가지 이상 조합, 10자~16자)"/>
                         </li>
                         <li>
-                            <input type="text" id="join_pwCheck" name="join_pwCheck" placeholder="비밀번호 입력확인"/>
+                            <input type="password" id="join_pwCheck" name="join_pwCheck" placeholder="비밀번호 입력확인"/>
                         </li>
                         <li>
                             <input id="join_name" name="join_name" type="text" placeholder="이름을 입력해주세요(필수)"/>
@@ -156,21 +345,21 @@ const RegisterPage = () => {
                         <li className="birth">
                             <p>*생일/성별은 가입 후 수정이 불가합니다.</p>
                             <div>
-                                <input type="number" placeholder="1994"/>
+                                <input id='join_birthYear' type="number" placeholder="1994"/>
                                 <span>년</span>
-                                <input type="number"/>
+                                <input id='join_birthMonth' type="number"/>
                                 <span>월</span>
-                                <input type="number"/>
+                                <input id='join_birthDate' type="number"/>
                                 <span>일</span>
                             </div>
                         </li>
                         <li className="gender">
-                            <label htmlFor="chk_man">
-                                <input type="checkbox" name="man" id="chk_man" className="hidden"/>
+                            <label htmlFor="gender_man">
+                                <input type="checkbox" name="man" id="gender_man" className="hidden"/>
                                 남성
                             </label>
-                            <label htmlFor="chk_woman">
-                                <input type="checkbox" name="woman" id="chk_woman" className="hidden"/>
+                            <label htmlFor="gender_woman">
+                                <input type="checkbox" name="woman" id="gender_woman" className="hidden"/>
                                 여성
                             </label>
                         </li>
