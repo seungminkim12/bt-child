@@ -5,8 +5,9 @@ import "../../../css/layout.css"
 import "../../../css/response.css"
 const Login = () => {
     useEffect(() => {
-        if(localStorage.getItem("joinComplete") != null){
+        if(sessionStorage.getItem("joinComplete") != null){
             alert("회원가입이 완료 되었습니다. 가입한 아이디로 로그인 해주세요.")
+            sessionStorage.clear();
         }
     })
 

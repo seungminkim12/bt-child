@@ -79,7 +79,7 @@ const RegisterPage = () => {
             })
         })        
     }
-    // 
+
     const join_submit = () => {
         join_progress(0)
         .then(()=>{
@@ -139,7 +139,7 @@ const RegisterPage = () => {
             })
             .then((response) => response.json())
             .then((data) => {
-                localStorage.setItem("joinComplete",true)
+                sessionStorage.setItem("joinComplete",true)
                 window.location.href="/login"
             })
             .catch((err1)=>{
@@ -252,6 +252,9 @@ const RegisterPage = () => {
                 if(year === "" || month === "" || date === ""){
                     reject({errType:"생년월일 미입력",msg:"생년월일을 입력해 주세요."})
                 } 
+                else if(month > 12 || date > 31){
+                    reject({errType:"생년월일 형식 오류",msg:"생년월일을 확인해 주세요."})
+                }
                 else {
                     resolve()
                 }
@@ -294,6 +297,18 @@ const RegisterPage = () => {
             }
         })
     }
+
+    /**
+     * input 글자수 제한
+     */
+    const maxLengthCheck = (e) => {
+        if (e.target.value.length > e.target.maxLength){
+            e.target.value = e.target.value.slice(0, e.target.maxLength);
+        }    
+
+        
+    }
+    
 
     return (
       <section id="join">
@@ -338,18 +353,18 @@ const RegisterPage = () => {
                                 <option value="016">016</option>
                             </select>
                             <span></span>
-                            <input type="number" name="call_middle" id="call_middle"/>
+                            <input type="number" name="call_middle" id="call_middle" maxLength={4} onInput={maxLengthCheck}/>
                             <span></span>
-                            <input type="number" name="call_last" id="call_last"/>
+                            <input type="number" name="call_last" id="call_last" maxLength={4} onInput={maxLengthCheck}/>
                         </li>
                         <li className="birth">
                             <p>*생일/성별은 가입 후 수정이 불가합니다.</p>
                             <div>
-                                <input id='join_birthYear' type="number" placeholder="1994"/>
+                                <input id='join_birthYear' type="number" placeholder="1994" maxLength={4} onInput={maxLengthCheck}/>
                                 <span>년</span>
-                                <input id='join_birthMonth' type="number"/>
+                                <input id='join_birthMonth' type="number" maxLength={2} onInput={maxLengthCheck}/>
                                 <span>월</span>
-                                <input id='join_birthDate' type="number"/>
+                                <input id='join_birthDate' type="number" maxLength={2} onInput={maxLengthCheck}/>
                                 <span>일</span>
                             </div>
                         </li>
