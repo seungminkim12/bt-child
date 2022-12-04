@@ -81,219 +81,113 @@ const RegisterPage = () => {
     }
 
     const join_submit = () => {
-        join_progress(0)
+        join_progress()
         .then(()=>{
-            return join_progress(1)
-        })
-        .then(()=>{
-            return join_progress(2)
-        })
-        .then(()=>{
-            return join_progress(3)
-        })
-        .then(()=>{
-            return join_progress(4)
-        })
-        .then(()=>{
-            return join_progress(5)
-        })
-        .then(()=>{
-            return join_progress(6)
-        })
-        .then(()=>{
-            return join_progress(7)
-        })
-        .then(()=>{
-            let _email = document.getElementById("join_id").value;
-            let _password = document.getElementById("join_pw").value;
-            let _passwordConfirmation = document.getElementById("join_pwCheck").value;
-            let _name = document.getElementById("join_name").value;
-            let _phoneNumber = document.getElementById("call_first").value + document.getElementById("call_middle").value + document.getElementById("call_last").value;
-            let _birth = `${document.getElementById("join_birthYear").value}.${document.getElementById("join_birthMonth").value}.${document.getElementById("join_birthDate").value}`
-            let _gender = document.getElementById("gender_man").checked ? "man" : "woman"
-            
-            fetch("/api/users",{
-                method:"POST",
-            // mode: 'cors', // no-cors, cors, *same-origin
-            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-            // credentials: 'same-origin', // include, *same-origin, omit
-            // redirect: 'follow', // manual, *follow, error
-            // referrer: 'no-referrer', // no-referrer, *client
-                headers: {
-                    "X-Powered-By":"Express",
-                    "Content-Type":"application/json; charset=utf-8",
-                    "ETag":'W/"2f-tVeQsHeD5w7sUHaMuEfYDyucLG0"',
-                    "Date":new Date().toUTCString(),
-                    "Connection":"keep-alive",
-                    "Keep-Alive":"timeout=5"
-                },
-                body:JSON.stringify({
-                    email: _email,
-                    password: _password,
-                    passwordConfirmation: _passwordConfirmation,
-                    name: _name,
-                    phoneNumber: _phoneNumber,
-                    birth: _birth,
-                    gender: _gender,
-                })
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                sessionStorage.setItem("joinComplete",true)
-                window.location.href="/login"
-            })
-            .catch((err1)=>{
-                console.log("err1",err1)
-            })            
+            sessionStorage.setItem("joinComplete",true)
+            window.location.href="/login"
         })
         .catch((err)=>{
-            alert(err.msg)
+            alert(err.msga)
         })
-
     }
 
     /**
      * 회원가입 입력 확인
-     * @param {Number} type
-     * 0 : 이메일 
-     * 1 : 비번 
-     * 2 : 비번확인 
-     * 3 : 이름
-     * 4 : 폰번호
-     * 5 : 생년월일
-     * 6 : 성별체크
-     * 7 : 필수체크항목
      */
-    const join_progress = (type) => {
-        return new Promise((resolve,reject) => {
-            let _value;
-            /** 이메일 */
-            if(type === 0){
-                /** 이메일 입력값 */
-                _value = document.getElementById("join_id").value;
-
-                /** 이메일 정규식 */
-                var regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
-                if(_value === ""){
-                    reject({errType:"이메일 미입력",msg:"이메일을 입력해 주세요."})
-                }
-                else if(!regex.test(_value)){
-                    reject({errType:"이메일 형식 오류",msg:"이메일 형식에 맞지 않습니다. 올바른 형식으로 입력해 주세요."})
-                } 
-                else {
-                    resolve()
-                }
-            }
-            /** 비번 */
-            if(type === 1){
-                /** 비밀번호 입력 값 */
-                _value = document.getElementById("join_pw").value;
-
-                if(_value === ""){
-                    reject({errType:"비밀번호 미입력",msg:"비밀번호를 입력해 주세요."})
-                }
-                else if(_value.length < 6){
-                    reject({errType:"비밀번호 형식 오류",msg:"비밀번호는 6자리 이상 입력해 주세요."})
-                }
-                else {
-                    resolve()
-                }
-            }
-            /** 비번확인 */
-            if(type === 2){
-                /** 비밀번호 입력한 값 */
-                let pw = document.getElementById("join_pw").value
-                
-                /** 비밀번호 입력확인 값  */
-                _value = document.getElementById("join_pwCheck").value;
-
-                if(_value === ""){
-                    reject({errType:"비밀번호확인 미입력",msg:"비밀번호를 한번더 입력해 주세요."})
-                }
-                else if(pw < _value){
-                    reject({errType:"비밀번호 확인 오류",msg:"비밀번호가 같지않습니다. 비밀번호를 확인해 주세요."})
-                }
-                else {
-                    resolve()
-                }
-            }
+    const join_progress = () => {
+        return new Promise((resolve, reject) => {
+            /** 이메일 정규식 */
+            var regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+            /** 이메일 입력값 */
+            let _email = document.getElementById("join_id").value;
+            /** 비밀번호 입력 값 */
+            let _pw = document.getElementById("join_pw").value;
+            /** 비밀번호 입력확인 값  */
+            let _pwChk = document.getElementById("join_pwCheck").value;
             /** 이름 */
-            if(type === 3){
-                /** 비밀번호 입력확인 값  */
-                _value = document.getElementById("join_name").value;
-                if(_value === ""){
-                    reject({errType:"이름 미입력",msg:"이름을 입력해 주세요."})
-                } 
-                else {
-                    resolve()
-                }
-            }
+            let _name = document.getElementById("join_name").value;
+
             /** 폰번호 */
-            if(type === 4){
-                let middle, last;
-                middle = document.getElementById("call_middle").value;
-                last = document.getElementById("call_last").value;
+            let _middle = document.getElementById("call_middle").value;
+            let _last = document.getElementById("call_last").value;
 
-                if(middle === "" || last === ""){
-                    reject({errType:"휴대폰번호 미입력",msg:"휴대폰 번호를 입력해 주세요."})
-                } else {
-                    resolve()
-                }
-            }
+            let _phoneNumber = document.getElementById("call_first").value + _middle + _last;
+
             /** 생년월일 */
-            if(type === 5){
-                /** 비밀번호 입력확인 값  */
-                let year,month,date;
+            let _year = document.getElementById("join_birthYear").value;
+            let _month = document.getElementById("join_birthMonth").value;
+            let _date = document.getElementById("join_birthDate").value;
 
-                year = document.getElementById("join_birthYear").value;
-                month = document.getElementById("join_birthMonth").value;
-                date = document.getElementById("join_birthDate").value;
-                if(year === "" || month === "" || date === ""){
-                    reject({errType:"생년월일 미입력",msg:"생년월일을 입력해 주세요."})
-                } 
-                else if(month > 12 || date > 31){
-                    reject({errType:"생년월일 형식 오류",msg:"생년월일을 확인해 주세요."})
-                }
-                else {
+            let _birth = `${_year}.${_month}.${_date}`;
+            
+            /** 남자체크 */
+            let _gender_man = document.getElementById("gender_man").checked;
+            /** 여자체크 */
+            let _gender_woman = document.getElementById("gender_woman").checked
+
+            /** 이용약관동의 */
+            let _user_info = document.getElementById("chk_user_info").checked; 
+
+            /**개인정보수집 및 이용 동의 */
+            let _personal_info = document.getElementById("chk_personal_info").checked;
+
+            if(_email === "") reject({errType:"이메일 미입력",msg:"이메일을 입력해 주세요."})
+            else if(!regex.test(_email)) reject({errType:"이메일 형식 오류",msg:"이메일 형식에 맞지 않습니다. 올바른 형식으로 입력해 주세요."})
+            else if(_pw === "") reject({errType:"비밀번호 미입력",msg:"비밀번호를 입력해 주세요."})
+            else if(_pwChk.length < 6) reject({errType:"비밀번호 형식 오류",msg:"비밀번호는 6자리 이상 입력해 주세요."})
+            else if(_pwChk === "") reject({errType:"비밀번호확인 미입력",msg:"비밀번호를 한번더 입력해 주세요."})
+            else if(_pw != _pwChk) reject({errType:"비밀번호 확인 오류",msg:"비밀번호가 같지않습니다. 비밀번호를 확인해 주세요."})
+            else if(_name === "") reject({errType:"이름 미입력",msg:"이름을 입력해 주세요."})
+            else if(_middle === "" || _last === "") reject({errType:"휴대폰번호 미입력",msg:"휴대폰 번호를 입력해 주세요."})
+            else if(_year === "" || _month === "" || _date === "") reject({errType:"생년월일 미입력",msg:"생년월일을 입력해 주세요."})
+            else if(_month > 12 || _date > 31) reject({errType:"생년월일 형식 오류",msg:"생년월일을 확인해 주세요."})
+            else if(!_gender_man && !_gender_woman) reject({errType:"성별 미체크",msg:"성별을 체크해주세요."})
+            else if(!_user_info || !_personal_info) reject({errType:"필수 항목 미체크",msg:"필수항목을 체크해 주세요."})
+
+            else {
+                /** 
+                 * 성별 체크 값 
+                 * @param {Number}
+                 * 0 : 남자, 1 : 여자
+                 * */
+                let _gender;
+
+                if(_gender_man) _gender = 0;
+                else if(_gender_woman) _gender = 1;
+
+
+
+                fetch("/api/users",{
+                    method:"POST",
+                // mode: 'cors', // no-cors, cors, *same-origin
+                // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                // credentials: 'same-origin', // include, *same-origin, omit
+                // redirect: 'follow', // manual, *follow, error
+                // referrer: 'no-referrer', // no-referrer, *client
+                    headers: {
+                        "X-Powered-By":"Express",
+                        "Content-Type":"application/json; charset=utf-8",
+                        "ETag":'W/"2f-tVeQsHeD5w7sUHaMuEfYDyucLG0"',
+                        "Date":new Date().toUTCString(),
+                        "Connection":"keep-alive",
+                        "Keep-Alive":"timeout=5"
+                    },
+                    body:JSON.stringify({
+                        email: _email,
+                        password: _pw,
+                        passwordConfirmation: _pwChk,
+                        name: _name,
+                        phoneNumber: _phoneNumber,
+                        birth: _birth,
+                        gender: _gender,
+                    })
+                })
+                .then((response) => response.json())
+                .then((data) => {
                     resolve()
-                }
-            }
-            /** 성별체크 */
-            if(type === 6){
-                /** 남자체크 */
-                let gender_man, 
-                
-                /** 여자체크 */
-                gender_woman;
-
-                gender_man = document.getElementById("gender_man").checked
-                gender_woman = document.getElementById("gender_woman").checked
-
-                if(!gender_man && !gender_woman){
-                    reject({errType:"성별 미체크",msg:"성별을 체크해주세요."})
-                } 
-                else {
-                    resolve()
-                }
-            }
-            /** 필수체크항목 */
-            if(type === 7){
-                /** 이용약관동의 */
-                let user_info, 
-
-                /**개인정보수집 및 이용 동의 */
-                personal_info;
-
-                user_info = document.getElementById("chk_user_info").checked;
-                personal_info = document.getElementById("chk_personal_info").checked;
-
-                if(!user_info || !personal_info){
-                    reject({errType:"필수 항목 미체크",msg:"필수항목을 체크해 주세요."})
-                } 
-                else {
-                    resolve()
-                }
+                }).catch((err)=>{
+                    reject(err)
+                })
             }
         })
     }
