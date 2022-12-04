@@ -3,7 +3,6 @@ import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
 import { Link } from 'react-router-dom';
-import axios from "axios"
 
 
 const RegisterPage = () => {
@@ -83,8 +82,8 @@ const RegisterPage = () => {
     const join_submit = () => {
         join_progress()
         .then(()=>{
-            sessionStorage.setItem("joinComplete",true)
-            window.location.href="/login"
+            // sessionStorage.setItem("joinComplete",true)
+            // window.location.href="/login"
         })
         .catch((err)=>{
             alert(err.msga)
@@ -184,6 +183,7 @@ const RegisterPage = () => {
                 })
                 .then((response) => response.json())
                 .then((data) => {
+                    console.log("Data",data)
                     resolve()
                 }).catch((err)=>{
                     reject(err)
