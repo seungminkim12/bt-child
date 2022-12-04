@@ -3,7 +3,6 @@ import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
 import { Link } from 'react-router-dom';
-import axios from "axios"
 
 
 const RegisterPage = () => {
@@ -83,11 +82,11 @@ const RegisterPage = () => {
     const join_submit = () => {
         join_progress()
         .then(()=>{
-            sessionStorage.setItem("joinComplete",true)
-            window.location.href="/login"
+            // sessionStorage.setItem("joinComplete",true)
+            // window.location.href="/login"
         })
         .catch((err)=>{
-            alert(err.msga)
+            console.log("err",err)
         })
     }
 
@@ -159,11 +158,6 @@ const RegisterPage = () => {
 
                 fetch("/api/users",{
                     method:"POST",
-                // mode: 'cors', // no-cors, cors, *same-origin
-                // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                // credentials: 'same-origin', // include, *same-origin, omit
-                // redirect: 'follow', // manual, *follow, error
-                // referrer: 'no-referrer', // no-referrer, *client
                     headers: {
                         "X-Powered-By":"Express",
                         "Content-Type":"application/json; charset=utf-8",
@@ -179,11 +173,12 @@ const RegisterPage = () => {
                         name: _name,
                         phoneNumber: _phoneNumber,
                         birth: _birth,
-                        gender: _gender,
+                        // gender: _gender,
                     })
                 })
                 .then((response) => response.json())
                 .then((data) => {
+                    console.log("Data",data)
                     resolve()
                 }).catch((err)=>{
                     reject(err)
