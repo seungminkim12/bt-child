@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 
 //css
 import '../../../../css/admin/reset_adm.css'
@@ -8,24 +7,65 @@ import '../../../../css/admin/style_adm.css'
 
 import SideMenu from '../components/SideMenu';
 
-// const [img, setImg] = useState([])
-// const [previewImg, setPreviewImg] = useState([])
-
 const ProductRgst = () => {
+    //파일 업로드 대표이미지  
+    const [showImages, setShowImages] = useState([]);
 
-    const insertImg = (e) => {
-      let reader = new FileReader()
-
-      if(e.target.files[0]) {
-        reader.readAsDataURL(e.target.files[0])
+    //대표 이미지 상대경로 저장
+    const handleAddImages = (event) => {
+      const imageLists = event.target.files;
+      let imageUrlLists = [...showImages];
+      for (let i = 0; i < imageLists.length; i++) {
+        const currentImageUrl = URL.createObjectURL(imageLists[i]);
+        imageUrlLists.push(currentImageUrl);
       }
 
-      reader.onloadend = () => {
-        const previewImgUrl = reader.result
-
-        console.log(previewImgUrl)
+      if (imageUrlLists.length < 5) {
+        imageUrlLists = imageUrlLists.slice(0, 5);
+      }else{
+        alert('최대 5장 까지만 업로드 가능합니다.')
       }
-    }
+
+      setShowImages(imageUrlLists);
+    };
+
+    console.log(showImages)
+
+    //파일 업로드 상세 페이지  
+    const [showDetileImages, setShowDetileImages] = useState([]);
+
+    //대표 이미지 상대경로 저장
+    const handleDetileAddImages = (event) => {
+      const imageDtLists = event.target.files;
+      let imageUrlDtLists = [...showDetileImages];
+      for (let i = 0; i < imageDtLists.length; i++) {
+        const currentDtImageUrl = URL.createObjectURL(imageDtLists[i]);
+        imageUrlDtLists.push(currentDtImageUrl);
+      }
+
+      if (imageUrlDtLists.length < 5) {
+        imageUrlDtLists = imageUrlDtLists.slice(0, 5);
+      }else{
+        alert('최대 5장 까지만 업로드 가능합니다.')
+      }
+
+
+      setShowDetileImages(imageUrlDtLists);
+    };
+
+    //console.log(showDetileImages)
+
+    // X버튼 클릭 시 이미지 삭제
+    const handleDeleteImage = (id) => {
+      setShowImages(showImages.filter((_, index) => index !== id));
+    };
+
+    // X버튼 클릭 시 이미지 삭제
+    const DtDeleteImage = (id) => {
+      setShowDetileImages(showDetileImages.filter((_, index) => index !== id))
+    };
+    
+    
     return (
       <div className='wrap'>
       <SideMenu/>
@@ -35,7 +75,7 @@ const ProductRgst = () => {
             <div className="title">
                 <h2>상품 등록</h2> 
                 <div className="button_box">                    
-                    <button type="button" onClick="{}">등록</button>
+                    <button type="button">등록</button>
                 </div>                               
             </div>            
         </div>
@@ -50,15 +90,15 @@ const ProductRgst = () => {
                                 <li>대분류</li>
                                 <li>
                                     <select>
-                                        <option>욕실</option>                                        
+                                        <option>50s</option>                                        
                                     </select>
                                 </li>
                                 <li>소분류</li>
                                 <li>
                                     <select>
                                         <option>선택하세요</option>
-                                        <option>└ 치약</option>
-                                        <option>└ 샴푸바</option>                                  
+                                        <option>└ 빈티지 50s</option>
+                                        <option>└ 빈티지 70s</option>                                  
                                     </select>
                                 </li>
                             </ul>
@@ -82,37 +122,24 @@ const ProductRgst = () => {
                             <input className="" type="text" name="" placeholder=""/> 
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col">상품유형</div>
-                        <div className="col">  
-                            <div className="prt">
-                                <label>                      
-                                    <input type="radio" id="" name="evt" checked="checked" /> 없음
-                                </label>  
-                                <label>                    
-                                    <input type="radio" id="" name="evt" /> NEW
-                                </label>
-                                <label>                    
-                                    <input type="radio" id="" name="evt" /> SALE
-                                </label>
-                                <label>                    
-                                    <input type="radio" id="" name="evt" /> BIG SALE
-                                </label>
-                                <label>                    
-                                    <input type="radio" id="" name="evt" /> HOT
-                                </label>
-                            </div>
-                        </div>
-                    </div>  
                 </div> 
 
                 <h3 className="line">상품 상세 정보</h3> 
                 <div className="box_cont"> 
                     <div className="row">
-                        <div className="col">상품상세 정보</div>
+                        <div className="col">대표이미지</div>
                         <div className="col">
-                            <p className="t_mint">권장 이미지 사이즈  : 가로 1200px / 세로 : 자유</p>   
+                            <p className="t_mint">5장까지 가능합니다.</p>   
                             <div className="sm_editor">
+                            <label htmlFor='file1'>이미지업로드</label>
+                            <input id="file1" type="file" multiple accept='.jpg,.jpeg,.png' onChange={handleAddImages} />       
+                            {/* // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
+                            {showImages.map((image, id) => (
+                                <div className="preview" key={id}>
+                                  <img src={image} alt={`${image}-${id}`} />
+                                  <span onClick={() => handleDeleteImage(id)}>삭제</span>
+                                </div>
+                            ))}   
                             </div>                                      
                         </div> 
                     </div>  
@@ -247,10 +274,18 @@ const ProductRgst = () => {
                         <p>상품 상세페이지에 들어가는 이미지 입니다. </p>
                         <p>상세페이지의 상품 이미지를 5개 까지 등록 가능합니다.</p>
                         <p className="t_blk">첫번째 이미지가 상품의 목록이미지로 등록됩니다.</p>                        
-                        <p className="t_red mt20">이미지 사이즈 : 600*517(1200*1034)</p>                                            
                     </div>
                     <label htmlFor='file'>이미지업로드</label>
-                    <input type="file" id='file' accept='image/jpg, image/jpeg, image/png' onChange={(e) => insertImg(e)} />
+                    <input id="file" type="file" multiple accept='.jpg,.jpeg,.png' onChange={handleDetileAddImages} />       
+                    {/* // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
+                    <div>
+                    {showDetileImages.map((image, id) => (
+                        <div className="preview" key={id}>
+                          <img src={image} alt={`${image}-${id}`} />
+                          <span onClick={() => DtDeleteImage(id)}>삭제</span>
+                        </div>
+                    ))}       
+                    </div>
                 </div>
             </form>
         </div>

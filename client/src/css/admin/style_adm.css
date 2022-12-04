@@ -597,8 +597,18 @@ td.bn_btm_mo div img {
     display: block;    
 }
 .box_cont .row .col div span {
-    line-height: 36px;
+    line-height: 100%;
     margin-left: 10px;
+}
+.box_cont .row .col div img{
+    width: 250px;
+    height: 150px;
+    margin-top: 20px;
+}
+.box_cont.prd_img div img{
+    width: 100%;
+    /* height: 150px; */
+    margin-top: 20px;
 }
 .box_cont .row .col .file_att {
     display: block;
@@ -643,8 +653,8 @@ td.bn_btm_mo div img {
 .box_cont .row .col .sm_editor {
     width: 100%;
     max-width: 1000px;
-    min-height: 300px;
-    max-height: 600px; 
+    /* min-height: 300px;
+    max-height: 600px;  */
     color:#000;
     font-size: 14px;
 }
