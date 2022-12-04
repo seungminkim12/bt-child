@@ -8,13 +8,7 @@ import "swiper/css"
 SwiperCore.use([Autoplay]);
 const Header = () => {
     const searchBox_toggle = () => {
-        // alert("a")
         document.body.classList.toggle("searchHidden")
-        // if(document.body.classList.find(el=>el === "searchHidden")){
-        //     alert("a")
-        // } else {
-        //     alert("b")
-        // }
     }
 
     const gnb_event = (e) => {
@@ -60,7 +54,7 @@ const Header = () => {
                     >
                     {
                       slide_contents.map(el=>{
-                        return <SwiperSlide className='txtSlide'>
+                        return <SwiperSlide key={el.contents} className='txtSlide'>
                                     <span>
                                         <strong>{el.head}</strong>
                                         {el.contents}
