@@ -8,6 +8,7 @@ import '../../../../css/admin/style_adm.css'
 import SideMenu from '../components/SideMenu';
 
 const ProductRgst = () => {
+  
     //파일 업로드 대표이미지  
     const [showImages, setShowImages] = useState([]);
 
@@ -55,12 +56,12 @@ const ProductRgst = () => {
 
     //console.log(showDetileImages)
 
-    // X버튼 클릭 시 이미지 삭제
+    // 대표이미지 X버튼 클릭 시 이미지 삭제
     const handleDeleteImage = (id) => {
       setShowImages(showImages.filter((_, index) => index !== id));
     };
 
-    // X버튼 클릭 시 이미지 삭제
+    // 상세 페이지 X버튼 클릭 시 이미지 삭제
     const DtDeleteImage = (id) => {
       setShowDetileImages(showDetileImages.filter((_, index) => index !== id))
     };
@@ -129,15 +130,15 @@ const ProductRgst = () => {
                     <div className="row">
                         <div className="col">대표이미지</div>
                         <div className="col">
-                            <p className="t_mint">5장까지 가능합니다.</p>   
+                            {/* <p className="t_mint">5장까지 가능합니다.</p>    */}
                             <div className="sm_editor">
-                            <label htmlFor='file1'>이미지업로드</label>
+                            <label htmlFor='file1' className='blk-ln'>이미지업로드</label>
                             <input id="file1" type="file" multiple accept='.jpg,.jpeg,.png' onChange={handleAddImages} />       
-                            {/* // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
+                            {/* 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
                             {showImages.map((image, id) => (
                                 <div className="preview" key={id}>
                                   <img src={image} alt={`${image}-${id}`} />
-                                  <span onClick={() => handleDeleteImage(id)}>삭제</span>
+                                  <span className='blk-ln' onClick={() => handleDeleteImage(id)}>삭제</span>
                                 </div>
                             ))}   
                             </div>                                      
@@ -158,7 +159,7 @@ const ProductRgst = () => {
                     <div className="row">
                         <div className="col">상품품절</div>
                         <div className="col">                            
-                            <p className="t_mint">판매를 중단하거나 재고가 없을 경우 체크하여 품절 표기 하세요</p>
+                            {/* <p className="t_mint">판매를 중단하거나 재고가 없을 경우 체크하여 품절 표기 하세요</p> */}
                             <label>
                                 <input type="checkbox" id=""/>품절처리
                             </label>   
@@ -275,9 +276,9 @@ const ProductRgst = () => {
                         <p>상세페이지의 상품 이미지를 5개 까지 등록 가능합니다.</p>
                         <p className="t_blk">첫번째 이미지가 상품의 목록이미지로 등록됩니다.</p>                        
                     </div>
-                    <label htmlFor='file'>이미지업로드</label>
+                    <label htmlFor='file' className='blk-ln'>이미지업로드</label>
                     <input id="file" type="file" multiple accept='.jpg,.jpeg,.png' onChange={handleDetileAddImages} />       
-                    {/* // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
+                    {/*저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
                     <div>
                     {showDetileImages.map((image, id) => (
                         <div className="preview" key={id}>
