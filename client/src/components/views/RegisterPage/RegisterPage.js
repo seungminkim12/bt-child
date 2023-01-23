@@ -2,10 +2,22 @@ import React, { useEffect } from 'react'
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+
+/** 이메일 정규식 */
+let regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+let REST_API_URI = "56736ec94d4fe9406655d0ec2ff8c795";
+let REDIRECT_URI = "http://localhost:3000"
+
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_URI}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+
 
 
 const RegisterPage = () => {
+
+    let nav = useNavigate()
 
     useEffect(()=>{
         let gender = document.querySelectorAll(".gender input");/** 성별 체크 */
@@ -82,8 +94,8 @@ const RegisterPage = () => {
     const join_submit = () => {
         join_progress()
         .then(()=>{
-            // sessionStorage.setItem("joinComplete",true)
-            // window.location.href="/login"
+            sessionStorage.setItem("joinComplete",true)
+            nav("/login")
         })
         .catch((err)=>{
             console.log("err",err)
@@ -96,8 +108,6 @@ const RegisterPage = () => {
      */
     const join_progress = () => {
         return new Promise((resolve, reject) => {
-            /** 이메일 정규식 */
-            var regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
             /** 이메일 입력값 */
             let _email = document.getElementById("join_id").value;
             /** 비밀번호 입력 값 */
@@ -150,10 +160,10 @@ const RegisterPage = () => {
                  * @param {Number}
                  * 0 : 남자, 1 : 여자
                  * */
-                // let _gender;
+                let _gender;
 
-                // if(_gender_man) _gender = 0;
-                // else if(_gender_woman) _gender = 1;
+                if(_gender_man) _gender = 0;
+                else if(_gender_woman) _gender = 1;
 
 
 
@@ -174,7 +184,7 @@ const RegisterPage = () => {
                         name: _name,
                         phoneNumber: _phoneNumber,
                         birth: _birth,
-                        // gender: _gender,
+                        gender: _gender,
                     })
                 })
                 .then((response) => response.json())

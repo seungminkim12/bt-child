@@ -1,6 +1,8 @@
 import './App.css';
-import React, {lazy, Suspense} from "react";
-import { Route, Routes, Outlet, NavLink } from "react-router-dom";
+import React, {lazy, Suspense,useEffect} from "react";
+import { Route, Routes, Outlet, NavLink,useLocation } from "react-router-dom";
+import Global from "../js/global"
+
 // pages for this product
 // import LoginPage from "./views/LoginPage/LoginPage";
 // import RegisterPage from "./views/RegisterPage/RegisterPage";
@@ -23,6 +25,9 @@ const Home = lazy(() => import('./views/Home/Home'));
 const LoginPage = lazy(() => import('./views/LoginPage/LoginPage'))
 const CartPage = lazy(() => import('./views/CartPage/CartPage'))
 const RegisterPage = lazy(() => import('./views/RegisterPage/RegisterPage'))
+const MyPage = lazy(() => import("./views/MyPage/MyPage"))
+
+
 
 //admin
 const AdminLogin = lazy(() => import('./views/Admin/Login/Login'))
@@ -39,41 +44,91 @@ const Product = lazy(() => import('./views/Admin/Product/Product'))
 const ProductRgst = lazy(() => import('./views/Admin/Product/ProductRgst'))
 
 
+const App = () => { 
+  const _location = useLocation();
+  
+  useEffect(() => {
+    /** 세션스토리지값 */
+    let _session = Global.getToken("bt-child",sessionStorage);
 
+    /** 로컬스토리지값 */
+    let _local = Global.getToken("bt-child",localStorage);
 
+    /** 세션스토리지가 있음 */
+    if(_session){
+      Global.getSession(_session.token)
+      .then((rs)=>{
+        console.log("로그인 중")
+      })
+      .catch((err)=>{
+        Global.Login(_local.user.id,_local.user.pw).then((rs)=>{
+          console.log("로그인중임 재로그인")
+        })
+      })
+    }
+    /** 세션스토리지가 없음 */
+    else {
+      /** 로컬스토리지가 있음 */
+      if(_local){
+        Global.getSession(_local.token)
+        .then((rs)=>{
+          console.log("로컬스토리지로 getSession 태움",rs)
+          Global.Login(_local.user.id,_local.user.pw)
+          .then((rs)=>{
+            console.log("jwt 만료되기전임. 재로그인 함")
+          })
+          .catch((err)=>{
+            console.log("만료 됨",err)
+            localStorage.clear("bt-child")
+          })
+        })
+        .catch((err)=>{
+          console.log("getSession fail",err)
+        })
+      }
+      /** 로컬스토리지가 없음 */
+      else {
+        console.log("비로그인")
+      }
+    }
 
-const hideHeader = true;
+    return () => {
+        console.log("render before",_location);
+    };
+}, [_location.pathname]);
 
-
-const App = () => {
   return (
+    <>
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
           <Route element={<Layout />}>
             {/* user */}
-            <Route index element={<Home />} />
-            <Route path="home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="cart" element={<CartPage />} />
-            <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            <Route path="mypage" element={<MyPage />} />
           </Route>
           
           {/* admin */}
-          <Route path="AdminLogin" element={<AdminLogin />} />
-          <Route path="Category" element={<Category />} />
-          <Route path="CategoryRgst" element={<CategoryRgst />} />
-          <Route path="CategoryRgstSm" element={<CategoryRgstSm />} />
-          <Route path="Member" element={<Member />} />
-          <Route path="MemberDetail" element={<MemberDetail />} />
-          <Route path="MemberRgst" element={<MemberRgst />} />
-          <Route path="Product" element={<Product />} />
-          <Route path="ProductRgst" element={<ProductRgst />} />
+          <Route path="admin" element={<AdminLogin />} />
+          <Route path="admin/Category" element={<Category />} />
+          <Route path="admin/CategoryRgst" element={<CategoryRgst />} />
+          <Route path="admin/CategoryRgstSm" element={<CategoryRgstSm />} />
+          <Route path="admin/Member" element={<Member />} />
+          <Route path="admin/MemberDetail" element={<MemberDetail />} />
+          <Route path="admin/MemberRgst" element={<MemberRgst />} />
+          <Route path="admin/Product" element={<Product />} />
+          <Route path="admin/ProductRgst" element={<ProductRgst />} />
 
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
-        {/* </Route> */}
       </Routes>
     </Suspense>
+
+    <Routes>
+
+    </Routes>
+    </>
   );
 };
 
@@ -84,9 +139,10 @@ const Layout = () => {
 
   return (
     <>
-      {hideHeader ?  null : <Header />}      
+      
+      {window.location.pathname.indexOf("admin") != -1 ?  null : <Header />}      
       <Outlet />
-      {hideHeader ? null : <Footer />}
+      {window.location.pathname.indexOf("admin") != -1 ? null : <Footer />}
     </>
   );
 };

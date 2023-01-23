@@ -10,7 +10,7 @@ const SideMenu = () => {
         <div className="header">   
             <a href="./login.html" className="log">로그아웃</a>      
             <div className="left_menu">
-            <NavLink to="/Category" className="logo_sm">
+            <NavLink to="/admin/Category" className="logo_sm">
                     <h1>컨버스</h1>
                 </NavLink>
                 <div className="lnb">
@@ -19,15 +19,15 @@ const SideMenu = () => {
                             <a onClick={toggleNav}>상품관리</a>
                             <ul className={isOpen ? "show-menu" : "hide-menu"}>
                                 <li>
-                                    <NavLink to="/Category">카테고리관리</NavLink>
+                                    <NavLink to="/admin/Category">카테고리관리</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/Product">상품관리</NavLink>
+                                    <NavLink to="/admin/Product">상품관리</NavLink>
                                 </li>
                             </ul>
                         </li>                   
                         <li>
-                            <NavLink to="/Member">회원관리</NavLink>
+                            <NavLink to="/admin/Member">회원관리</NavLink>
                         </li>
                     </ul>
                 </div>

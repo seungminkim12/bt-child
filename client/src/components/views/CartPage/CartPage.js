@@ -6,6 +6,21 @@ import "../../../css/response.css"
 
 const CartPage = () => {
 
+    const chk_all = (e) => {
+        document.querySelectorAll(".cart_list input[type=checkbox]").forEach(el=>{
+            if(e.target.checked){
+                el.checked=true
+            }
+            else {
+                el.checked=false
+            }
+        })
+    }
+
+    const chk = () => {
+        let _chk = document.querySelectorAll(".cart_list input[type=checkbox]")
+    }
+
     const toggle_info = (e) => {
         if(e.currentTarget.nextElementSibling.style.display === "" || e.currentTarget.nextElementSibling.style.display === "none"){
             e.currentTarget.nextElementSibling.style.display="block"
@@ -27,7 +42,7 @@ const CartPage = () => {
             <div className="cart_box">
                 <h2 className="hidden">장바구니 목록</h2>
                 <label htmlFor="chk_all">
-                    <input type="checkbox" id="chk_all"/>
+                    <input type="checkbox" id="chk_all" onChange={chk_all}/>
                     전체 선택
                 </label>
                 <ul className="cart_list">
