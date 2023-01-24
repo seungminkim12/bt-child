@@ -10,7 +10,8 @@ const Login = () => {
 
     useEffect(() => {
         if(sessionStorage.getItem("joinComplete") != null){
-            alert("회원가입이 완료 되었습니다. 가입한 아이디로 로그인 해주세요.")
+            Global.toast.alert("가입완료", "가입한 아이디로 로그인 해주세요.")
+            // alert("회원가입이 완료 되었습니다. 가입한 아이디로 로그인 해주세요.")
             sessionStorage.clear();
         }
 
@@ -26,14 +27,16 @@ const Login = () => {
     })
 
     let Login = () => {
+        
         let login_id = document.getElementById("login_id").value;
         let login_pw = document.getElementById("login_pw").value;
 
         if(login_id === ""){
-            alert("이메일을 입력하지않음")
+            Global.toast.alert("아이디 미입력", "아이디를 입력하지않음")
+            
         }
         else if(login_pw === ""){
-            alert("비밀번호를 입력하지 않음")
+            Global.toast.alert("비밀번호 미입력", "비밀번호를 입력하지 않음")
         }
         else {
             Global.Login(login_id,login_pw)
@@ -42,7 +45,7 @@ const Login = () => {
             })
             .catch((err)=>{
                 console.log(err)
-                alert(err.message)
+                Global.toast.alert("로그인 오류", err.message)
             })
         }
     }

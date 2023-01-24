@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Global from "../../../js/global" /** 전역함수 */
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
@@ -99,7 +100,7 @@ const RegisterPage = () => {
         })
         .catch((err)=>{
             console.log("err",err)
-            alert(err.msg)
+            Global.toast.alert(err.errType, err.msg)
         })
     }
 

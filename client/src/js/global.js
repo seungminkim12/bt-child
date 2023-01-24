@@ -159,7 +159,7 @@ let store = {
         resolve(rs)
       })
       .catch((err) => {
-          if(tokenObj.token.accessToken == null && tokenObj.token.refreshToken == null){
+          if(tokenObj.accessToken == null && tokenObj.refreshToken == null){
             reject({type:err,message:"토큰값이 없음"})
           }
           else {
@@ -257,8 +257,67 @@ let store = {
   },
 
   toast: {
-    alert: () => {
+    setCss: (element) => {
+      element.style.position = "fixed";
+      element.style.top=0;
+      element.style.left=0
+      element.style.width = "100%";
+      element.style.height = "100%";
+      element.style.backgroundColor="rgba(0,0,0,0.6)"
+      element.style.zIndex = "99999";
+
+      element.querySelector(".inner").style.position = "absolute"
+      element.querySelector(".inner").style.top = "50%";
+      element.querySelector(".inner").style.left = "50%";
+      element.querySelector(".inner").style.transform = "translate(-50%,-50%)";
+      element.querySelector(".inner").style.display = "block";
+      element.querySelector(".inner").style.padding = "40px 80px";
+      element.querySelector(".inner").style.textAlign = "center";
+      element.querySelector(".inner").style.background = "#fff";
+
+      element.querySelector("dt").style.fontSize = "26px";
+      element.querySelector("dd").style.margin = "20px 0 40px";
+      element.querySelector("dd").style.fontSize = "18px";
+
+
+      element.querySelector(".btn_close").style.display="inloine-block"
+      element.querySelector(".btn_close").style.padding="10px 20px"
+      element.querySelector(".btn_close").style.fontSize="16px"
+      element.querySelector(".btn_close").style.color="#fff"
+      element.querySelector(".btn_close").style.background="#000"
+    },
+
+    alert: (title,txt) => {
+      if(document.getElementById("toast") != null){
+        return 
+      }
+
       let div = document.createElement("div");
+      let temp = 
+      `
+       <div class="inner">
+         <dl>
+            <dt>${title}</dt>
+            <dd>${txt}</dd>
+         </dl>
+         <button class="btn_close">확인</button>
+       </div>
+      `
+      ;
+
+      div.setAttribute("id","toast")
+
+
+      div.innerHTML=temp;
+      document.body.append(div);
+
+      store.toast.setCss(div)
+
+      div.addEventListener("click",(e)=>{
+        if(e.target.className === "btn_close" || e.target.id === "toast"){
+          div.remove();
+        }
+      })
     }
   }
 
