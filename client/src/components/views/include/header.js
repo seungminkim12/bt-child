@@ -9,8 +9,8 @@ import "swiper/css"
 
 SwiperCore.use([Autoplay]);
 const Header = () => {
-    let [_page,setPage] = useState("/login");
-    let _isToken = Global.getToken("bt-child",sessionStorage);
+    let [_page,setPage] = useState("login");
+    let _isToken = Global.getToken("bt-child");
 
     useEffect(()=>{
         if(_isToken){

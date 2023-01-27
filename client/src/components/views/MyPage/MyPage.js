@@ -11,7 +11,7 @@ const Mypage = () => {
     const navigate = useNavigate();
 
     let logout = () => {
-        Global.Logout(Global.getToken("bt-child",sessionStorage).token)
+        Global.Logout(Global.getToken("bt-child").refreshToken)
         .then((rs)=>{
             console.log("logout",rs)
             Global.deleteToken("bt-child")

@@ -44,56 +44,40 @@ const Product = lazy(() => import('./views/Admin/Product/Product'))
 const ProductRgst = lazy(() => import('./views/Admin/Product/ProductRgst'))
 
 
+
+
 const App = () => { 
   const _location = useLocation();
-  
+
   useEffect(() => {
-    /** 세션스토리지값 */
-    let _session = Global.getToken("bt-child",sessionStorage);
+    
+    let _token = Global.getToken("bt-child");
 
-    /** 로컬스토리지값 */
-    let _local = Global.getToken("bt-child",localStorage);
-
-    /** 세션스토리지가 있음 */
-    if(_session){
-      Global.getSession(_session.token)
-      .then((rs)=>{
-        console.log("로그인 중")
+    /** 토큰이 있음 */
+    if(_token){
+      Global.getSession(_token.accessToken)
+      .then(rs=>{
+        console.log("access",rs)
       })
-      .catch((err)=>{
-        Global.Login(_local.user.id,_local.user.pw).then((rs)=>{
-          console.log("로그인중임 재로그인")
-        })
-      })
-    }
-    /** 세션스토리지가 없음 */
-    else {
-      /** 로컬스토리지가 있음 */
-      if(_local){
-        Global.getSession(_local.token)
+      .catch(err=>{
+        console.log("access fail")
+        Global.getSession(_token.refreshToken)
         .then((rs)=>{
-          console.log("로컬스토리지로 getSession 태움",rs)
-          Global.Login(_local.user.id,_local.user.pw)
-          .then((rs)=>{
-            console.log("jwt 만료되기전임. 재로그인 함")
-          })
-          .catch((err)=>{
-            console.log("만료 됨",err)
-            localStorage.clear("bt-child")
-          })
+          console.log("refresh",rs)
         })
-        .catch((err)=>{
-          console.log("getSession fail",err)
+        .catch(err=>{
+          console.log("refresh err",err)
         })
-      }
-      /** 로컬스토리지가 없음 */
-      else {
-        console.log("비로그인")
-      }
+      })
+      
+    }
+    /** 토큰이 없음 */
+    else {
+      
     }
 
     return () => {
-        console.log("render before",_location);
+        console.log("render before");
     };
 }, [_location.pathname]);
 

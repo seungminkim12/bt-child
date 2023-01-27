@@ -71,20 +71,20 @@ let store = {
    */
   setToken: (obj) => {
     return new Promise((resolve,reject)=>{
-      if(obj.token.accessToken == undefined || obj.token.refreshToken == null){
+      if(obj.accessToken == undefined || obj.refreshToken == null){
         reject({type:"token undefined",message:"토큰값이 없음"})
       }
-      else if(obj.token.accessToken == null){
-        reject({type:"accessToken null",message:"accessToken 값이 넘어오지 않음"})
-      } 
-      else if(obj.token.refreshToken == null){
-        reject({type:"refreshToken null",message:"refreshToken 값이 넘어오지 않음"})
-      }
       else {
-        resolve(
-          localStorage.setItem("bt-child",encodeURIComponent(JSON.stringify(obj))),
-          sessionStorage.setItem("bt-child",encodeURIComponent(JSON.stringify(obj)))
-          )
+        if(obj.accessToken == null){
+          reject({type:"accessToken null",message:"accessToken 값이 넘어오지 않음"})
+        } 
+        else if(obj.refreshToken == null){
+          reject({type:"refreshToken null",message:"refreshToken 값이 넘어오지 않음"})
+        }
+        else {
+          console.log("resove",obj)
+          resolve(sessionStorage.setItem("bt-child",encodeURIComponent(JSON.stringify(obj))))
+        }
       }
     })
     
@@ -92,14 +92,13 @@ let store = {
 
   /**
    * 로컬스토리지 에 저장된 값을 가져옴 (저장된 값을 decode => parse 하고 반환)
-   * @param {String} name 저장된 로컬스토리지 이름 
-   * @param {Stroage} type localStorage || sessionStorage
    * 
-   * @returns {Object}  
-   * { token: {accessToken, refreshToken}, user: {id, pw} }
+   * @param {String} name 저장된 로컬스토리지 이름 
+   * 
+   * @returns {Object} {accessToken, refreshToken}
    */
-  getToken: (name,type) => {
-    let _name = type.getItem(name)  
+  getToken: (name) => {
+    let _name = sessionStorage.getItem(name)  
     /** encode 된 객체를 decode 함 */
     let _decode = decodeURIComponent(_name)
 
@@ -109,37 +108,24 @@ let store = {
   },
 
   /**
-   * 토큰을 파싱함
-   * @param {Object} token accessToken, refreshToken 중 아무거나
-   * 
-   * @returns {Object} 파싱된 객체를 리턴
-   */
-  parseToken: (token) => {
-    let base64Payload = token.split(".")[1];
-    let payload = window.Buffer.from(base64Payload);
-    
-    let result = JSON.parse(payload.toString())
-    console.log(result)
-  },
-
-
-  /**
    * 토큰 삭제
    * 
    * @param {String} name 로컬스토리지에 저장된 이름
    */
   deleteToken : (name) => {
-    localStorage.clear(name)
+    sessionStorage.clear(name)
   },
 
   /**
    * 세션값 확인
-   * @param {Objeect} tokenObj 토큰이 들어있는 오브젝트
+   * @param {Objeect} token access, refresh
    * 
    * @returns {Object} 토큰이 들어있는 obj를 배열안에 넣어서 리턴
    */
-  getSession : (tokenObj) => {
+  getSession : (token) => {
     return new Promise((resolve,reject)=>{
+        if(token === null) reject({type:"token null",message:"토큰이 넘어오지 않음"})
+
         fetch("/api/sessions",{
           method:"get",
           headers: {
@@ -150,8 +136,8 @@ let store = {
               "Connection":"keep-alive",
               "Keep-Alive":"timeout=5",
               "user-agent":navigator.userAgent,
-              "Authorization": tokenObj.accessToken,
-              "x-refresh":tokenObj.refreshToken
+              "Authorization": token,
+              // "x-refresh":tokenObj.refreshToken
           },
       })
       .then((response) => response.json())
@@ -159,12 +145,7 @@ let store = {
         resolve(rs)
       })
       .catch((err) => {
-          if(tokenObj.accessToken == null && tokenObj.refreshToken == null){
-            reject({type:err,message:"토큰값이 없음"})
-          }
-          else {
-            reject({type:err,message:"알수 없는 에러"})
-          }
+        reject(err)
       })
     })
   },
@@ -172,14 +153,16 @@ let store = {
   /**
    * 로그인 로직
    * 
-   * 입력하지 않은값들은 프론트에서 처리해줘야함
+   * 실패시 err 객체를 리젝트함
+   * 
    * @param {String} _id 
    * @param {String} _pw 
-   * 
-   * 실패시 err 객체를 리젝트함
    */
   Login: function(_id,_pw) {
     return new Promise((resolve,reject)=>{
+        if(_id === "") reject({type:"아이디 미입력",message:"아이디를 입력하지않음"})
+        if(_pw === "") reject({type:"비밀번호 미입력",message:"비밀번호를 입력하지않음"})
+
         fetch("/api/sessions",{
           headers: {
               "X-Powered-By":"Express",
@@ -205,30 +188,29 @@ let store = {
           //     resolve()
           // })
 
-          /** 로컬스토리 에 저장 */
-          let obj = {};
-
-          obj.token = rs;
-          obj.user = {id:_id,pw:_pw}
-          store.setToken(obj).then(()=>{
+          store.setToken(rs)
+          .then((rs)=>{
+            console.log("rs",rs)
             resolve()
           })
           .catch((err)=>{
+            console.log("err",err)
             reject({type:err.type,message:err.message})
           })
       })
       .catch(err=>{
-          reject({type:err, message : "계정이 올바르지 않음 , 아이디나 비번 확인하셈"})
+          console.log("login err",err)
+          reject({type:"로그인 실패", message : "계정이 올바르지 않음 , 아이디나 비번 확인하셈"})
       })      
     })
   },
 
   /**
    * 로그아웃
-   * @param {Object} tokenObj 토큰이 들어있는 obj 
+   * @param {Object} token access, refresh 
    * @returns {Object} 빈객체를 리턴함
    */
-  Logout: (tokenObj) => {
+  Logout: (token) => {
     return new Promise((resolve,reject)=>{
       fetch("/api/sessions",{
         method:"DELETE",
@@ -240,13 +222,11 @@ let store = {
           "Connection":"keep-alive",
           "Keep-Alive":"timeout=5",
           "user-agent":navigator.userAgent,
-          "Authorization": tokenObj.accessToken,
-          "x-refresh":tokenObj.refreshToken
+          "Authorization": token,
         }
       })
       .then(response => response.json())
       .then(rs=>{
-        localStorage.clear("bt-child");
         sessionStorage.clear("bt-child");
         resolve({type:rs, message:"로그아웃 완료"})
       })

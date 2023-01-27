@@ -31,23 +31,14 @@ const Login = () => {
         let login_id = document.getElementById("login_id").value;
         let login_pw = document.getElementById("login_pw").value;
 
-        if(login_id === ""){
-            Global.toast.alert("아이디 미입력", "아이디를 입력하지않음")
-            
-        }
-        else if(login_pw === ""){
-            Global.toast.alert("비밀번호 미입력", "비밀번호를 입력하지 않음")
-        }
-        else {
-            Global.Login(login_id,login_pw)
-            .then(()=>{
-                navigate("/")
-            })
-            .catch((err)=>{
-                console.log(err)
-                Global.toast.alert("로그인 오류", err.message)
-            })
-        }
+        Global.Login(login_id,login_pw)
+        .then(()=>{
+            console.log("success")
+            navigate("/")
+        })
+        .catch((err)=>{
+            Global.toast.alert(err.type, err.message)
+        })
     }
 
     return (
