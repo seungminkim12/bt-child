@@ -8,6 +8,7 @@ import '../../../../css/admin/style_adm.css'
 import SideMenu from '../components/SideMenu';
 
 const ProductRgst = () => {
+  
     //파일 업로드 대표이미지  
     const [showImages, setShowImages] = useState([]);
 
@@ -27,9 +28,8 @@ const ProductRgst = () => {
       }
 
       setShowImages(imageUrlLists);
+      console.log('showImages === ',showImages)
     };
-
-    console.log(showImages)
 
     //파일 업로드 상세 페이지  
     const [showDetileImages, setShowDetileImages] = useState([]);
@@ -55,15 +55,41 @@ const ProductRgst = () => {
 
     //console.log(showDetileImages)
 
-    // X버튼 클릭 시 이미지 삭제
+    // 대표이미지 X버튼 클릭 시 이미지 삭제
     const handleDeleteImage = (id) => {
       setShowImages(showImages.filter((_, index) => index !== id));
     };
 
-    // X버튼 클릭 시 이미지 삭제
+    // 상세 페이지 X버튼 클릭 시 이미지 삭제
     const DtDeleteImage = (id) => {
       setShowDetileImages(showDetileImages.filter((_, index) => index !== id))
     };
+
+    const [optList, setoptList] = useState([]);
+
+    const opt = (event) => {//옵션 input 이벤트
+      const optTitle =  document.querySelector('.opt li:nth-child(1) input').value;
+      const optTitle02 =  document.querySelector('.opt li:nth-child(2) input').value;
+      let opt1= [...optList]
+      opt1.push({title1:optTitle,title2:optTitle02})
+      setoptList(opt1)
+      console.log('optList === ',optList)
+    }
+
+    // const onCheckedElement = (checked, item) => {
+    //   if (checked) {
+    //   } else if (!checked) {
+    //     setoptList(optList.filter(el => el !== item));
+    //   }
+    //   console.log('setoptList === ',setoptList)
+    // };
+
+    // // 선택삭제 버튼 클릭 시 이미지 삭제
+    // const onRemove = (id) => {
+    //   setoptList(optList.filter((_, index) => index !== id))
+    //   console.log('setoptList === ',setoptList)
+    // };
+    // //console.log(optList)
     
     
     return (
@@ -129,15 +155,15 @@ const ProductRgst = () => {
                     <div className="row">
                         <div className="col">대표이미지</div>
                         <div className="col">
-                            <p className="t_mint">5장까지 가능합니다.</p>   
+                            {/* <p className="t_mint">5장까지 가능합니다.</p>    */}
                             <div className="sm_editor">
-                            <label htmlFor='file1'>이미지업로드</label>
+                            <label htmlFor='file1' className='blk-ln'>이미지업로드</label>
                             <input id="file1" type="file" multiple accept='.jpg,.jpeg,.png' onChange={handleAddImages} />       
-                            {/* // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
+                            {/* 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
                             {showImages.map((image, id) => (
                                 <div className="preview" key={id}>
                                   <img src={image} alt={`${image}-${id}`} />
-                                  <span onClick={() => handleDeleteImage(id)}>삭제</span>
+                                  <span className='blk-ln' onClick={() => handleDeleteImage(id)}>삭제</span>
                                 </div>
                             ))}   
                             </div>                                      
@@ -158,7 +184,7 @@ const ProductRgst = () => {
                     <div className="row">
                         <div className="col">상품품절</div>
                         <div className="col">                            
-                            <p className="t_mint">판매를 중단하거나 재고가 없을 경우 체크하여 품절 표기 하세요</p>
+                            {/* <p className="t_mint">판매를 중단하거나 재고가 없을 경우 체크하여 품절 표기 하세요</p> */}
                             <label>
                                 <input type="checkbox" id=""/>품절처리
                             </label>   
@@ -171,47 +197,63 @@ const ProductRgst = () => {
                             <ul className="opt">
                                 <li>
                                     <div className="title">
-                                        옵션1 명칭 입력                                        
+                                        옵션 명칭 입력                                        
                                     </div>
                                     <input className="" type="text" name="" placeholder=""/>
                                 </li>
                                 <li>
                                     <div className="title">
-                                        옵션1 항목                                        
+                                        옵션 항목                                        
                                     </div>
                                     <input className="" type="text" name="" placeholder=""/>
                                 </li>
                             </ul>                            
-                            <ul className="opt">
-                                <li>
-                                    <div className="title">
-                                        옵션2 명칭 입력                                        
-                                    </div>
-                                    <input className="" type="text" name="" placeholder=""/>
-                                </li>
-                                <li>
-                                    <div className="title">
-                                        옵션2 항목                                        
-                                    </div>
-                                    <input className="" type="text" name="" placeholder=""/>
-                                </li>
-                            </ul>
-                            <button type="button" className="btn blk mt20 mb20" onClick="">옵션 목록 생성</button>
+                            <button type="button" className="btn blk mt20 mb20" onClick={opt}>옵션 목록 생성</button>
                             <div className="opt_list">
                                 <div className="title">옵션 목록</div>
-                                <button type="button" className="btn blk-ln mb10" onClick="">선택 삭제</button>
+                                <button type="button" className="btn blk-ln mb10" onClick={opt}>선택 삭제</button>
                                 <div className="board">
                                     <table className="option">
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" className="mg00" id=""/></th>
                                                 <th>옵션명</th>
-                                                <th>추가금액</th>
                                                 <th>재고수량</th>
                                                 <th>사용여부</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          {optList.map((title,id) => {
+                                              return (
+                                                <tr key={id}>
+                                                  <td><input type="checkbox" className="mg00" id={id}/></td>
+                                                  <td className="opt_title"><div>{title.title1}{title.title2}</div></td>
+                                                  <td>
+                                                    <select>
+                                                          <option>1</option>
+                                                          <option>2</option>
+                                                          <option>3</option>
+                                                          <option>4</option>
+                                                          <option>5</option>
+                                                          <option>6</option>
+                                                          <option>7</option>
+                                                          <option>8</option>
+                                                          <option>9</option>
+                                                          <option>10</option>
+                                                      </select>
+                                                  </td>
+                                                  <td>
+                                                      <select>
+                                                          <option>사용</option>
+                                                          <option>미사용</option>
+                                                      </select>
+                                                  </td>
+                                                  </tr>
+                                              );
+                                          })}
+                          
+                                        </tbody>
+                                        {/* <tbody>
                                             <tr>
                                                 <td><input type="checkbox" className="mg00" id=""/></td>
                                                 <td className="opt_title"><div>S  빨</div></td>
@@ -260,7 +302,7 @@ const ProductRgst = () => {
                                                     </select>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                        </tbody> */}
                                     </table>
                                 </div>
                             </div>
@@ -275,9 +317,9 @@ const ProductRgst = () => {
                         <p>상세페이지의 상품 이미지를 5개 까지 등록 가능합니다.</p>
                         <p className="t_blk">첫번째 이미지가 상품의 목록이미지로 등록됩니다.</p>                        
                     </div>
-                    <label htmlFor='file'>이미지업로드</label>
+                    <label htmlFor='file' className='blk-ln'>이미지업로드</label>
                     <input id="file" type="file" multiple accept='.jpg,.jpeg,.png' onChange={handleDetileAddImages} />       
-                    {/* // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
+                    {/*저장해둔 이미지들을 순회하면서 화면에 이미지 출력 */}
                     <div>
                     {showDetileImages.map((image, id) => (
                         <div className="preview" key={id}>
