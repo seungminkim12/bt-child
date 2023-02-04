@@ -11,7 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const navigateToPurchase = () => {
-    navigate("/Category");
+    navigate("/admin/Category");
 
     // if(condition) {
     //         fetch("http://localhost:1377/api/users", {

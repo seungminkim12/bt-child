@@ -1,11 +1,24 @@
 import React, { useEffect } from 'react'
+import Global from "../../../js/global" /** 전역함수 */
 import "../../../css/reset.css"
 import "../../../css/layout.css"
 import "../../../css/response.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+
+/** 이메일 정규식 */
+let regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+let REST_API_URI = "56736ec94d4fe9406655d0ec2ff8c795";
+let REDIRECT_URI = "http://localhost:3000"
+
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_URI}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+
 
 
 const RegisterPage = () => {
+
+    let nav = useNavigate()
 
     useEffect(()=>{
         let gender = document.querySelectorAll(".gender input");/** 성별 체크 */
@@ -82,12 +95,12 @@ const RegisterPage = () => {
     const join_submit = () => {
         join_progress()
         .then(()=>{
-            // sessionStorage.setItem("joinComplete",true)
-            // window.location.href="/login"
+            sessionStorage.setItem("joinComplete",true)
+            nav("/login")
         })
         .catch((err)=>{
             console.log("err",err)
-            alert(err.msg)
+            Global.toast.alert(err.errType, err.msg)
         })
     }
 
@@ -96,8 +109,6 @@ const RegisterPage = () => {
      */
     const join_progress = () => {
         return new Promise((resolve, reject) => {
-            /** 이메일 정규식 */
-            var regex = /^([0-9a-zA-Z_\-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
             /** 이메일 입력값 */
             let _email = document.getElementById("join_id").value;
             /** 비밀번호 입력 값 */
@@ -150,10 +161,10 @@ const RegisterPage = () => {
                  * @param {Number}
                  * 0 : 남자, 1 : 여자
                  * */
-                // let _gender;
+                let _gender;
 
-                // if(_gender_man) _gender = 0;
-                // else if(_gender_woman) _gender = 1;
+                if(_gender_man) _gender = 0;
+                else if(_gender_woman) _gender = 1;
 
 
 
@@ -174,7 +185,7 @@ const RegisterPage = () => {
                         name: _name,
                         phoneNumber: _phoneNumber,
                         birth: _birth,
-                        // gender: _gender,
+                        gender: _gender,
                     })
                 })
                 .then((response) => response.json())
@@ -219,7 +230,7 @@ const RegisterPage = () => {
             <div className="input_box">
                 <div className="inner">
                     <ul className="btn_list">
-                        <li><button type="button" onClick={kakaoLogin}><svg width="20px" height="20px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M255.5 48C299.345 48 339.897 56.5332 377.156 73.5996C414.415 90.666 443.871 113.873 465.522 143.22C487.174 172.566 498 204.577 498 239.252C498 273.926 487.174 305.982 465.522 335.42C443.871 364.857 414.46 388.109 377.291 405.175C340.122 422.241 299.525 430.775 255.5 430.775C241.607 430.775 227.262 429.781 212.467 427.795C148.233 472.402 114.042 494.977 109.892 495.518C107.907 496.241 106.012 496.15 104.208 495.248C103.486 494.706 102.945 493.983 102.584 493.08C102.223 492.177 102.043 491.365 102.043 490.642V489.559C103.126 482.515 111.335 453.169 126.672 401.518C91.8486 384.181 64.1974 361.2 43.7185 332.575C23.2395 303.951 13 272.843 13 239.252C13 204.577 23.8259 172.566 45.4777 143.22C67.1295 113.873 96.5849 90.666 133.844 73.5996C171.103 56.5332 211.655 48 255.5 48Z"></path></svg>카카오 계정으로 1초 로그인</button></li>
+                        <li><button type="button"><svg width="20px" height="20px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M255.5 48C299.345 48 339.897 56.5332 377.156 73.5996C414.415 90.666 443.871 113.873 465.522 143.22C487.174 172.566 498 204.577 498 239.252C498 273.926 487.174 305.982 465.522 335.42C443.871 364.857 414.46 388.109 377.291 405.175C340.122 422.241 299.525 430.775 255.5 430.775C241.607 430.775 227.262 429.781 212.467 427.795C148.233 472.402 114.042 494.977 109.892 495.518C107.907 496.241 106.012 496.15 104.208 495.248C103.486 494.706 102.945 493.983 102.584 493.08C102.223 492.177 102.043 491.365 102.043 490.642V489.559C103.126 482.515 111.335 453.169 126.672 401.518C91.8486 384.181 64.1974 361.2 43.7185 332.575C23.2395 303.951 13 272.843 13 239.252C13 204.577 23.8259 172.566 45.4777 143.22C67.1295 113.873 96.5849 90.666 133.844 73.5996C171.103 56.5332 211.655 48 255.5 48Z"></path></svg>카카오 계정으로 1초 로그인</button></li>
                     </ul>
                     <h3>필수정보</h3>
                     <ul className="input_list">

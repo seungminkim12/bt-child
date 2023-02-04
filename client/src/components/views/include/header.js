@@ -1,12 +1,33 @@
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import Global from "../../../js/global" /** 전역 클래스 */
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay } from "swiper/core";
-
 import "swiper/css"
+
+
 SwiperCore.use([Autoplay]);
 const Header = () => {
+    let [_page,setPage] = useState("login");
+    let _isToken = Global.getToken("bt-child");
+
+    useEffect(()=>{
+        if(_isToken){
+            console.log("from : header 토큰있음 (로그인중)")
+            setPage("mypage")
+            } 
+        else {
+            console.log("from : header 토큰없음 (로그인안됨)")
+            setPage("login")
+        }
+        
+        return () => {
+            console.log("header before");
+        };
+
+    },[_isToken])
+
     const searchBox_toggle = () => {
         document.body.classList.toggle("searchHidden")
     }
@@ -276,7 +297,7 @@ const Header = () => {
                     <div className="util">
                         <ul className="utilMenu">
                             <li>
-                                <Link to={'/login'} className="btn_mypage"><i className="xi-user-o"></i></Link>
+                                <Link to={`/${_page}`} className="btn_mypage"><i className="xi-user-o"></i></Link>
                                 </li>
                             <li>
                                 <Link to={'/cart'} className="btn_cart"><i className="xi-cart-o"></i></Link>

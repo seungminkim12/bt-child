@@ -1,6 +1,8 @@
 import './App.css';
-import React, {lazy, Suspense} from "react";
-import { Route, Routes, Outlet, NavLink } from "react-router-dom";
+import React, {lazy, Suspense,useEffect} from "react";
+import { Route, Routes, Outlet, NavLink,useLocation } from "react-router-dom";
+import Global from "../js/global"
+
 // pages for this product
 // import LoginPage from "./views/LoginPage/LoginPage";
 // import RegisterPage from "./views/RegisterPage/RegisterPage";
@@ -23,6 +25,9 @@ const Home = lazy(() => import('./views/Home/Home'));
 const LoginPage = lazy(() => import('./views/LoginPage/LoginPage'))
 const CartPage = lazy(() => import('./views/CartPage/CartPage'))
 const RegisterPage = lazy(() => import('./views/RegisterPage/RegisterPage'))
+const MyPage = lazy(() => import("./views/MyPage/MyPage"))
+
+
 
 //admin
 const AdminLogin = lazy(() => import('./views/Admin/Login/Login'))
@@ -41,39 +46,73 @@ const ProductRgst = lazy(() => import('./views/Admin/Product/ProductRgst'))
 
 
 
+const App = () => { 
+  const _location = useLocation();
 
-const hideHeader = true;
+  useEffect(() => {
+    
+    let _token = Global.getToken("bt-child");
 
+    /** 토큰이 있음 */
+    if(_token){
+      Global.getSession(_token.accessToken)
+      .then(rs=>{
+        console.log("access",rs)
+      })
+      .catch(err=>{
+        console.log("access fail")
+        Global.getSession(_token.refreshToken)
+        .then((rs)=>{
+          console.log("refresh",rs)
+        })
+        .catch(err=>{
+          console.log("refresh err",err)
+        })
+      })
+      
+    }
+    /** 토큰이 없음 */
+    else {
+      
+    }
 
-const App = () => {
+    return () => {
+        console.log("render before");
+    };
+}, [_location.pathname]);
+
   return (
+    <>
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
           <Route element={<Layout />}>
             {/* user */}
-            <Route index element={<Home />} />
-            <Route path="home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="cart" element={<CartPage />} />
-            <Route path="*" element={<p>There's nothing here: 404!</p>} />
+            <Route path="mypage" element={<MyPage />} />
           </Route>
           
           {/* admin */}
-          <Route path="AdminLogin" element={<AdminLogin />} />
-          <Route path="Category" element={<Category />} />
-          <Route path="CategoryRgst" element={<CategoryRgst />} />
-          <Route path="CategoryRgstSm" element={<CategoryRgstSm />} />
-          <Route path="Member" element={<Member />} />
-          <Route path="MemberDetail" element={<MemberDetail />} />
-          <Route path="MemberRgst" element={<MemberRgst />} />
-          <Route path="Product" element={<Product />} />
-          <Route path="ProductRgst" element={<ProductRgst />} />
+          <Route path="admin" element={<AdminLogin />} />
+          <Route path="admin/Category" element={<Category />} />
+          <Route path="admin/CategoryRgst" element={<CategoryRgst />} />
+          <Route path="admin/CategoryRgstSm" element={<CategoryRgstSm />} />
+          <Route path="admin/Member" element={<Member />} />
+          <Route path="admin/MemberDetail" element={<MemberDetail />} />
+          <Route path="admin/MemberRgst" element={<MemberRgst />} />
+          <Route path="admin/Product" element={<Product />} />
+          <Route path="admin/ProductRgst" element={<ProductRgst />} />
 
           <Route path="*" element={<p>There's nothing here: 404!</p>} />
-        {/* </Route> */}
       </Routes>
     </Suspense>
+
+    <Routes>
+
+    </Routes>
+    </>
   );
 };
 
@@ -84,9 +123,10 @@ const Layout = () => {
 
   return (
     <>
-      {hideHeader ?  null : <Header />}      
+      
+      {window.location.pathname.indexOf("admin") != -1 ?  null : <Header />}      
       <Outlet />
-      {hideHeader ? null : <Footer />}
+      {window.location.pathname.indexOf("admin") != -1 ? null : <Footer />}
     </>
   );
 };

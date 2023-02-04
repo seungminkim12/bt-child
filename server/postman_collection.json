@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\"\n}",
+							"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"passwordConfirmation\": \"{{password}}\",\n    \"name\": \"{{name}}\", \"gender\": \"{{gender}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -496,6 +496,10 @@
 		{
 			"key": "productId",
 			"value": "<productId will be set when you create a session>"
+		},
+		{
+			"key":"gender",
+			"value":"0"
 		}
 	]
 }
