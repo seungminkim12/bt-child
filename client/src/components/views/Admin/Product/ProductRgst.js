@@ -27,9 +27,8 @@ const ProductRgst = () => {
       }
 
       setShowImages(imageUrlLists);
+      console.log('showImages === ',showImages)
     };
-
-    console.log(showImages)
 
     //파일 업로드 상세 페이지  
     const [showDetileImages, setShowDetileImages] = useState([]);
@@ -64,6 +63,32 @@ const ProductRgst = () => {
     const DtDeleteImage = (id) => {
       setShowDetileImages(showDetileImages.filter((_, index) => index !== id))
     };
+
+    const [optList, setoptList] = useState([]);
+
+    const opt = (event) => {//옵션 input 이벤트
+      const optTitle =  document.querySelector('.opt li:nth-child(1) input').value;
+      const optTitle02 =  document.querySelector('.opt li:nth-child(2) input').value;
+      let opt1= [...optList]
+      opt1.push({title1:optTitle,title2:optTitle02})
+      setoptList(opt1)
+      console.log('optList === ',optList)
+    }
+
+    // const onCheckedElement = (checked, item) => {
+    //   if (checked) {
+    //   } else if (!checked) {
+    //     setoptList(optList.filter(el => el !== item));
+    //   }
+    //   console.log('setoptList === ',setoptList)
+    // };
+
+    // // 선택삭제 버튼 클릭 시 이미지 삭제
+    // const onRemove = (id) => {
+    //   setoptList(optList.filter((_, index) => index !== id))
+    //   console.log('setoptList === ',setoptList)
+    // };
+    // //console.log(optList)
     
     
     return (
@@ -171,47 +196,63 @@ const ProductRgst = () => {
                             <ul className="opt">
                                 <li>
                                     <div className="title">
-                                        옵션1 명칭 입력                                        
+                                        옵션 명칭 입력                                        
                                     </div>
                                     <input className="" type="text" name="" placeholder=""/>
                                 </li>
                                 <li>
                                     <div className="title">
-                                        옵션1 항목                                        
+                                        옵션 항목                                        
                                     </div>
                                     <input className="" type="text" name="" placeholder=""/>
                                 </li>
                             </ul>                            
-                            <ul className="opt">
-                                <li>
-                                    <div className="title">
-                                        옵션2 명칭 입력                                        
-                                    </div>
-                                    <input className="" type="text" name="" placeholder=""/>
-                                </li>
-                                <li>
-                                    <div className="title">
-                                        옵션2 항목                                        
-                                    </div>
-                                    <input className="" type="text" name="" placeholder=""/>
-                                </li>
-                            </ul>
-                            <button type="button" className="btn blk mt20 mb20" onClick="">옵션 목록 생성</button>
+                            <button type="button" className="btn blk mt20 mb20" onClick={opt}>옵션 목록 생성</button>
                             <div className="opt_list">
                                 <div className="title">옵션 목록</div>
-                                <button type="button" className="btn blk-ln mb10" onClick="">선택 삭제</button>
+                                <button type="button" className="btn blk-ln mb10" onClick={opt}>선택 삭제</button>
                                 <div className="board">
                                     <table className="option">
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" className="mg00" id=""/></th>
                                                 <th>옵션명</th>
-                                                <th>추가금액</th>
                                                 <th>재고수량</th>
                                                 <th>사용여부</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          {optList.map((title,id) => {
+                                              return (
+                                                <tr key={id}>
+                                                  <td><input type="checkbox" className="mg00" id={id}/></td>
+                                                  <td className="opt_title"><div>{title.title1}{title.title2}</div></td>
+                                                  <td>
+                                                    <select>
+                                                          <option>1</option>
+                                                          <option>2</option>
+                                                          <option>3</option>
+                                                          <option>4</option>
+                                                          <option>5</option>
+                                                          <option>6</option>
+                                                          <option>7</option>
+                                                          <option>8</option>
+                                                          <option>9</option>
+                                                          <option>10</option>
+                                                      </select>
+                                                  </td>
+                                                  <td>
+                                                      <select>
+                                                          <option>사용</option>
+                                                          <option>미사용</option>
+                                                      </select>
+                                                  </td>
+                                                  </tr>
+                                              );
+                                          })}
+                          
+                                        </tbody>
+                                        {/* <tbody>
                                             <tr>
                                                 <td><input type="checkbox" className="mg00" id=""/></td>
                                                 <td className="opt_title"><div>S  빨</div></td>
@@ -260,7 +301,7 @@ const ProductRgst = () => {
                                                     </select>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                        </tbody> */}
                                     </table>
                                 </div>
                             </div>
